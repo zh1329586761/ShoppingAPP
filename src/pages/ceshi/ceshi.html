@@ -1,0 +1,32 @@
+<!--
+  Generated template for the CeshiPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>注册</ion-title>
+      </ion-navbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <form [formGroup]="RegisterForm" (ngSubmit)="Register(RegisterForm.value)" novalidate>
+        <ion-input type="text" placeholder="用户名" value="" [formControl]="name" clearInput=true maxlength="15"></ion-input>
+        <div *ngIf="name.hasError('required') && name.touched"   class="error-message" color="danger">请输入用户名</div>
+        <ion-input type="text" placeholder="邮箱" value="" [formControl]="email" clearInput=true maxlength="60"></ion-input>
+        <div *ngIf="email.hasError('required') && email.touched" class="error-message" color="danger">请输入邮箱</div>
+        <div *ngIf="!email.hasError('required')&&email.hasError('email') && email.touched" class="error-message" color="danger">邮箱格式不正确</div>
+        <ion-input type="password" placeholder="密码" value="" [formControl]="password" clearInput=true></ion-input>
+        <div *ngIf="password.hasError('required') && password.touched"  color="danger" class="error-message">请输入密码</div>
+        <div *ngIf="(password.hasError('minlength')) && password.touched"  color="danger" class="error-message">密码长度最少为六位</div>
+        <ion-input type="password" placeholder="确认密码" value="" [formControl]="repassword" clearInput=true></ion-input>
+        <div *ngIf="repassword.hasError('required') && repassword.touched" color="danger" class="error-message">请输入确认密码</div>
+        <div *ngIf="(repassword.hasError('minlength')) && repassword.touched" color="danger" class="error-message">确认密码长度最少为六位</div>
+        <!--密码不一致的判断要在必填和位数判断后面，也就是它们两个都没有错误时，再去判断密码是否一样-->
+        <div *ngIf="!repassword.hasError('required')&&!repassword.hasError('minlength')&&password.value!=repassword.value" color="danger" class="error-message">两次输入的密码不一致</div>
+        <!--注册按钮原本只有!RegisterForm.valid，但由于密码不一致不是自带的，还要在这里单独加判断-->
+        <button ion-button block color="danger" type="submit" [disabled]="!RegisterForm.valid||(password.value!=repassword.value)">确认注册</button>
+    </form>
+</ion-content>
+  

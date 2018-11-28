@@ -1,0 +1,169 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>注册界面</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <body class="no-padding reader-black-font" lang="zh-CN">
+    <div class="sign">
+      <div class="logo"><a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png"
+            alt="Logo"></a></div>
+      <div class="main">
+
+
+
+        <h4 class="title">
+          <div class="normal-title">
+            <a class="" href="/sign_in">登录</a>
+            <b>·</b>
+            <a id="js-sign-up-btn" class="active" href="/sign_up">注册</a>
+          </div>
+        </h4>
+        <div class="js-sign-up-container">
+          <form class="new_user" id="new_user" action="/users/register" accept-charset="UTF-8" method="post"><input
+              name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="1ClWj94TToX5o/orEHlRGhliyXHoFv0Km7lPncTFL8QJ/xUJt8PxICyZoAAmmu2iFrrELZHbJsJOxo4lOaVzXA==">
+            <div class="input-prepend restyle">
+              <input placeholder="你的昵称" type="text" value="" name="user[nickname]" id="user_nickname">
+              <i class="iconfont ic-user"></i>
+            </div>
+            <div class="input-prepend restyle no-radius js-normal">
+              <input type="hidden" value="CN" name="user[mobile_number_country_code]" id="user_mobile_number_country_code">
+              <input placeholder="手机号" type="tel" name="user[mobile_number]" id="user_mobile_number">
+              <i class="iconfont ic-phonenumber"></i>
+            </div>
+            <input type="hidden" name="oversea" id="oversea" value="false">
+            <input type="hidden" name="force_user_nonexist" id="force_user_nonexist" value="true">
+            <div class="input-prepend restyle no-radius security-up-code js-security-number hide">
+              <input type="text" name="sms_code" id="sms_code" placeholder="手机验证码">
+              <i class="iconfont ic-verify"></i>
+              <a tabindex="-1" class="btn-up-resend js-send-code-button disable" href="javascript:void(0);" id="send_code">发送验证码</a>
+              <div>
+                <div class="captcha"><input name="captcha[validation][challenge]" autocomplete="off" type="hidden"
+                    value="3b326436b36e6a767ef8fd9c95d29d3f"> <input name="captcha[validation][gt]" autocomplete="off"
+                    type="hidden" value="ec47641997d5292180681a247db3c92e"> <input name="captcha[validation][validate]"
+                    autocomplete="off" type="hidden" value=""> <input name="captcha[validation][seccode]" autocomplete="off"
+                    type="hidden" value=""> <input name="captcha[id]" autocomplete="off" type="hidden" value="">
+                  <div id="geetest-area" class="geetest"></div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="security_number" id="security_number">
+            <div class="input-prepend">
+              <input placeholder="设置密码" type="password" name="user[password]" id="user_password">
+              <i class="iconfont ic-password"></i>
+            </div>
+            <input type="submit" name="commit" value="注册" class="sign-up-button" id="sign_up_btn" data-disable-with="注册">
+            <p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br> <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a>
+              和 <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>
+          </form>
+          <!-- 更多注册方式 -->
+          <div class="more-sign">
+            <h6>社交帐号直接注册</h6>
+            <ul>
+              <li><a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a></li>
+              <li><a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a></li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Javascripts
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="application/json" data-name="page-data">
+      {
+        "user_signed_in": false,
+        "locale": "zh-CN",
+        "os": "windows",
+        "read_mode": "day",
+        "read_font": "font2"
+      }
+
+    </script>
+
+    <script src="//cdn2.jianshu.io/assets/web-base-059fad59acbd6e000110.js" crossorigin="anonymous"></script>
+    <script src="//cdn2.jianshu.io/assets/web-a844dd0ee5f24ad4d2bc.js" crossorigin="anonymous"></script>
+    <script src="//cdn2.jianshu.io/assets/web/pages/common/signup/entry-5d55473c92d21e013cde.js" crossorigin="anonymous"></script>
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+
+    </script>
+
+
+
+    <div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;">
+      <div id="trans-tooltip">
+        <div id="tip-left-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-top.png&quot;);"></div>
+        <div id="tip-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-top.png&quot;) repeat-x;"></div>
+        <div id="tip-right-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-top.png&quot;);"></div>
+        <div id="tip-right" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right.png&quot;) repeat-y;"></div>
+        <div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-bottom.png&quot;);"></div>
+        <div id="tip-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-bottom.png&quot;) repeat-x;"></div>
+        <div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-bottom.png&quot;);"></div>
+        <div id="tip-left" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left.png&quot;);"></div>
+        <div id="trans-content"></div>
+      </div>
+      <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-bottom.png&quot;);"></div>
+      <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-top.png&quot;);"></div>
+    </div>
+    <div class="geetest_panel geetest_wind" style="display: none;">
+      <div class="geetest_panel_ghost"></div>
+      <div class="geetest_panel_box">
+        <div class="geetest_other_offline geetest_panel_offline"></div>
+        <div class="geetest_panel_loading">
+          <div class="geetest_panel_loading_icon"></div>
+          <div class="geetest_panel_loading_content">智能验证检测中</div>
+        </div>
+        <div class="geetest_panel_success">
+          <div class="geetest_panel_success_box">
+            <div class="geetest_panel_success_show">
+              <div class="geetest_panel_success_pie"></div>
+              <div class="geetest_panel_success_filter"></div>
+              <div class="geetest_panel_success_mask"></div>
+            </div>
+            <div class="geetest_panel_success_correct">
+              <div class="geetest_panel_success_icon"></div>
+            </div>
+          </div>
+          <div class="geetest_panel_success_title">通过验证</div>
+        </div>
+        <div class="geetest_panel_error">
+          <div class="geetest_panel_error_icon"></div>
+          <div class="geetest_panel_error_title">网络超时</div>
+          <div class="geetest_panel_error_content">请点击此处重试</div>
+          <div class="geetest_panel_error_code"></div>
+        </div>
+        <div class="geetest_panel_footer" style="display: none;">
+          <div class="geetest_panel_footer_logo"></div>
+          <div class="geetest_panel_footer_copyright">由极验提供技术支持</div>
+        </div>
+        <div class="geetest_panel_next"></div>
+      </div>
+    </div>
+  </body>
+
+</ion-content>

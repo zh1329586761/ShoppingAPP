@@ -1,0 +1,94 @@
+<!--
+  Generated template for the PersonalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>账户资料</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list inset class="personal">
+    <ion-item>
+         头像
+        <span class="item-note">
+            <img  src="../../assets/imgs/pc16.jpg" class="avatar"/>
+        </span>
+        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+    </ion-item>
+
+      <ion-item>
+        
+        用户名
+        <span class="item-note">
+          张全蛋
+        </span>         
+        
+        <ion-icon name="ios-arrow-forward" item-end style="visibility:hidden"></ion-icon>
+      </ion-item>
+
+      <ion-item class="item-icon-right">
+          
+          昵称
+        <span class="item-note">
+          天王盖地虎
+        </span>
+        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item>            
+        <ion-label>性别</ion-label>
+        <ion-select>
+          <ion-option value="man" selected="true">男</ion-option>
+          <ion-option value="woman">女</ion-option>
+          <ion-option value="null">保密</ion-option>
+        </ion-select>
+
+        
+          <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>出生年月</ion-label>
+        <ion-select>
+          <ion-option value="01">1月</ion-option>
+          <ion-option value="02">2月</ion-option>
+          <ion-option value="03" selected="true">3月</ion-option>
+          <ion-option value="04">4月</ion-option>
+          <ion-option value="05">5月</ion-option>
+          <ion-option value="06">6月</ion-option>
+          <ion-option value="07">7月</ion-option>
+          <ion-option value="08">8月</ion-option>
+          <ion-option value="09">9月</ion-option>
+          <ion-option value="10">10月</ion-option>
+          <ion-option value="11">11月</ion-option>
+          <ion-option value="12">12月</ion-option>
+        </ion-select>
+        
+        <ion-select>
+          <ion-option>2019年</ion-option>
+          <ion-option>2018年</ion-option>
+          <ion-option>2017年</ion-option>
+          <ion-option>2016年</ion-option>
+          <ion-option>2015年</ion-option>
+          <ion-option selected="true">2014年</ion-option>
+          <ion-option>2013年</ion-option>
+          <ion-option>2012年</ion-option>
+          <ion-option>2011年</ion-option>
+          <ion-option>2010年</ion-option>
+          <ion-option>2009年</ion-option>
+        </ion-select>
+        
+          <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+      </ion-item>
+</ion-list>
+
+<button ion-button block color="danger" class="exit_btn" (tap)="loginOut()">退出登录</button>
+
+</ion-content>

@@ -1,0 +1,80 @@
+.cart-list{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 0px 10px;
+    dt{
+        width: 120px;
+        // height: 120px;
+        padding: 10px 0px;
+
+        // background-color: red;
+        display: flex;
+        align-items: center;
+        ion-checked{
+            width: 2.8rem;
+            height:2.8rem;
+            flex: 1;
+            
+        }
+        img{
+            
+            width: 50px;
+            height: 70px;
+            margin-left: 25px;
+        }
+
+    }
+    dd{
+        flex: 1;
+        // background-color: yellowgreen;
+        .cart-title{
+            font-size: 14px;
+            padding: 10px;
+            margin: 0px;
+        }
+        .cart-info{
+            display: flex;
+
+            .money{
+                flex: 1;
+                padding: 0px 10px;
+            }
+            .add{
+                width: 100px;
+                display: flex;
+                .add-left,.add-right{
+                    width: 20px;
+                    text-align: center;
+                    height:20px;
+                    line-height: 20px;
+                    border: 1px solid #eee;
+                    background-color: #eee;
+                }
+                .add-text{
+                    flex: 1;
+                    input{
+                        width: 100%;
+                        height:20px;
+                        text-align: center;
+                        border: 1px solid #eee;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+ion-toolbar{
+    height: 40px;
+    line-height: 40px;
+    ion-checkbox{
+        padding: 0px 10px;
+        position: relative;
+        top: 6px;
+    }
+    strong{
+        margin-left: 10px;
+    }
+    
+}

@@ -1,0 +1,71 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-searchbar [(ngModel)]="keywords"></ion-searchbar>
+    <ion-buttons end>
+        <button  ion-button icon-only (tap)="getSearchList()">
+          <!-- <ion-icon name="search"></ion-icon> -->
+          搜索
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="search-content" *ngIf="!flag" >
+    <!-- 热搜 -->
+  <div class="hotsearch">
+    <h3 class="search-title">热搜</h3>
+    <p>
+      <span>手机</span>
+      <span>电脑</span>
+      <span>服饰</span>
+      <span>生活</span>
+      <span>零食</span>
+    </p>
+  </div>
+<!-- 历史搜索 -->
+  <div class="history" *ngIf="historyList.length>0" >
+    <h3 class="search-title">历史搜索</h3>
+    <ion-list>
+      <ion-item *ngFor="let item of historyList" (press)="removeHistroy(item)" (tap)="goSearch(item)" >{{item}}</ion-item>
+    </ion-list>
+  </div>
+  </div>
+  <div class="list-content" *ngIf="flag" >
+
+    <div class="sub-header">
+      <div>综合</div>
+      <div>销量</div>
+      <div>价格</div>
+    </div>  
+
+
+    <ion-list inset>
+      <ion-item *ngFor="let item of list" >
+        <ion-thumbnail item-left>
+           <img [src]="config.apiUrl+item.s_pic"  />            
+        </ion-thumbnail>
+        <h2> {{item.title}}</h2>
+        <p>价格:<span class="price">{{item.price}}</span>元</p>           
+      </ion-item>
+     </ion-list>
+
+     <ion-infinite-scroll (ionInfinite)="doLoadMore($event)" *ngIf="hasData" >
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
+
+ 
+  
+
+</ion-content>

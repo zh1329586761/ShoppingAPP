@@ -1,0 +1,59 @@
+<ion-header>
+  <!-- <ion-navbar>
+    <ion-title>主页</ion-title>
+  </ion-navbar> -->
+  <ion-toolbar color="light">
+      <ion-searchbar (tap)="goSearch()" ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+<!-- 下拉刷新 -->
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="松开刷新"
+          refreshingSpinner="circles"
+          refreshingText="刷新中..">
+        </ion-refresher-content>
+      </ion-refresher>
+
+  <ion-slides pager="true" loop="true" autoplay="2000" *ngIf="focusList.length>0">
+
+    <ion-slide *ngFor="let item of focusList" >
+      <img [src]="Config.apiUrl+item.pic" alt="">
+    </ion-slide>
+
+  </ion-slides>
+
+  <div class="home-title">精品推荐</div>
+
+  <div class="slide_product">
+      <ion-scroll scrollX="true" >
+<!-- 外层的ion-scroll是100% 里面元素的宽度要大于100% -->
+          <ul class="clearfix" [ngStyle]="{'width': bestListWidth}">
+              <li *ngFor="let item of bestList" [navPush]="PcontentPage" [navParams]="{'id':item['_id']}">
+        
+                <img [src]="Config.apiUrl+item.s_pic" alt="">
+                <p>{{item.title}}</p>
+                <p>价格:88元</p>
+                 
+              </li>
+            </ul>
+
+        </ion-scroll>
+    
+  </div>
+
+  <div class="home-title">猜你喜欢</div>
+  <div class="index_product">
+    <ion-row>
+      <ion-col col-6 *ngFor="let item of hotList" [navPush]="PcontentPage" [navParams]="{'id':item['_id']}">    <!--  col总的为12   col-6即分为两份  col-4分为三份 以此类推 -->
+        <img [src]="Config.apiUrl+item.s_pic" alt="">
+          <p>{{item.title}}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+  
+</ion-content>

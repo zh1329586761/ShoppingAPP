@@ -1,0 +1,49 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的购物车</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <dl class="cart-list" *ngFor="let item of list" >
+    <dt>
+      <ion-checkbox [(ngModel)]="item.checked"  (ionChange)="changeCarts()"></ion-checkbox>
+      <img [src]="config.apiUrl+item.product_pic" />
+    </dt>
+    <dd>
+      <h2 class="cart-title">{{item.product_title}}</h2>
+      <div class="cart-info">
+        <div class="money">{{item.product_price}}</div>
+        <div class="add">
+          <div class="add-left">-</div>
+          <div class="add-text">
+            <input type="text" name="num" id="" [(ngModel)]="item.product_count">
+          </div>
+          <div class="add-right">+</div>
+        </div>
+      </div>
+    </dd>
+  </dl>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar >
+    <div>
+        <ion-checkbox></ion-checkbox>全选
+        <strong>合计：{{allPrice}}元</strong>
+    </div>
+    <ion-buttons end> 
+      <button ion-button color="danger" >结算</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

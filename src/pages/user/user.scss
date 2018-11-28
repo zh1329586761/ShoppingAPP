@@ -1,0 +1,43 @@
+.login{
+    padding: 10px 70px;
+    .usering{
+        text-align: center;
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    }
+    .login-btn{
+        text-align: center; 
+        margin-top: 10px;
+    }
+}
+
+ion-item-divider{
+    min-height: 0px;
+    height: 20px;
+
+}
+
+
+
+.list-ios[inset] {
+    margin: 0;
+}
+
+ion-list{
+    ion-item{
+
+        span{
+
+        }
+    }
+}
+
+.item-ios ion-icon[item-left], .item-ios ion-icon[item-right], .item-ios ion-icon[item-start], .item-ios ion-icon[item-end] {
+    margin-left: 0;
+    margin-right: 16px;
+    margin-top: 9px;
+    margin-bottom: 8px;
+}

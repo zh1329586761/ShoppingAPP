@@ -1,0 +1,39 @@
+.sign-page{
+    display: flex;
+    padding: 10px 0px;
+    align-items: center;
+    input{
+        flex: 1;
+        border: 1px solid #eee;
+        height: 30px;
+        text-indent: 5px;
+
+    }
+    .timer{
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        margin-left: 10px;
+        text-align: center;
+        background-color: #eee;
+        color: #666;
+    }
+}
+
+.msg-btn{
+    width:80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.code-info{
+    margin: 5px 0px;
+
+}
+
+.code-sign-p{
+    color: #999;
+    font-size: 14px;
+    text-indent: 2em;
+    text-align: justify; 
+}

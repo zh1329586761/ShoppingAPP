@@ -1,0 +1,42 @@
+<!--
+  Generated template for the CategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-searchbar></ion-searchbar>
+      <ion-buttons end>
+          <button  ion-button icon-only>
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  phone
+<div class="cate-content">
+  <div class="cate-left">
+    <ion-list>
+      <ion-item *ngFor="let item of leftcate"  (tap)="getRightCateData(item['_id'])">
+        <p>{{item.title}}</p>
+      </ion-item>
+      
+    </ion-list>
+  </div>
+
+  <div class="cate-right">
+    <ion-row>
+      <ion-col col-6 *ngFor="let item of rightcate" [navPush]="ProductlistPage" [navParams]="{'cid':item['_id']}">    <!--  col总的为12   col-6即分为两份  col-4分为三份 以此类推 -->
+        <img [src]="Config.apiUrl+item.pic" alt="">
+          <p>{{item.title}}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+</ion-content>

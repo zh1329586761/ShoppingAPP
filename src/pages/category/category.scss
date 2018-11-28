@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.cate-content{
+    width: 100%;
+    height: 100%; 
+    display: flex; 
+    .cate-left{
+        width: 100px;
+        height: 100%;
+        overflow-y: auto;
+        // background-color: red;
+            ion-item{
+                padding: 0;
+                text-align: center;
+            }
+            .item-inner{
+                padding: 0;
+            }
+            .label-ios{margin: 0}
+    }
+    .cate-right{
+        height: 100%;
+        flex: 1;
+        overflow-y: auto;
+        // background-color: yellow;
+        ion-col{
+            border: 0.5px solid #eee;
+            margin-left: -0.5px;
+            margin-top: -0.5px;
+
+            img{
+                display: block;
+                margin: 0 auto;
+                max-width: 90%;
+
+            }
+            p{
+                text-align: center; 
+                color: #666;
+            }
+
+
+        }
+        // ion-col:nth-child(3n){
+        //     border-right: 0px;
+        // }
+        
+    }
+}
+
