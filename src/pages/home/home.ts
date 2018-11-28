@@ -89,4 +89,8 @@ export class HomePage {
     })
   }
 
+  // 同步测试
+  ceshi(){
+    alert("本事件仅仅是测试使用")
+  }
 }
