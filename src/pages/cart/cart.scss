@@ -62,6 +62,9 @@
             }
         }
     }
+
+
+    
 }
 
 
@@ -77,4 +80,16 @@ ion-toolbar{
         margin-left: 10px;
     }
     
+}
+
+.checkbox-ios.checkbox-disabled, .item-ios.item-checkbox-disabled ion-label {
+    opacity: 1;
+    
+}
+
+.cart_spinner{
+
+    width: 60px;
+    height: 60px;
+    margin: 60px auto;
 }

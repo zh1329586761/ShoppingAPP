@@ -17,7 +17,11 @@ import { StorageProvider } from "../../providers/storage/storage";
 })
 export class CartPage {
   public list=[];
-  public allPrice=0;
+  public allPrice=0;/* 总价 */
+  ischecked=false;/* 全选和反选 */
+  public isEdit=false;   /*是否编辑*/
+
+  public hasData=true;   /*是否有数据*/
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public config:ConfigProvider,
@@ -26,34 +30,120 @@ export class CartPage {
 
   ionViewDidEnter(){
    this.getCartData();
+   console.log(this.getcheckNum(),this.list.length);      
+      //进来的时候判断有没有全选
+      if(this.getcheckNum()==this.list.length && this.list.length>0){      
+        this.ischecked=true;
+      }else{
+        this.ischecked=false;
+      }    
   }
 
   getCartData(){
     var cartsData=this.storage.get('carts_data');
     console.log(cartsData)
-    if (cartsData) {
+    if (cartsData && cartsData.length>0) {
       this.list=cartsData;
-
+      this.hasData=true;
     } else {
        this.list=[];
+       this.hasData=false;
     }
     this.totalPrice();
   }
 
+  // 选择按钮改变事件
   changeCarts(){
-    console.log(this.list);
-    this.totalPrice();
+    // console.log(this.list);
+    
+    
+    if(this.getcheckNum()==this.list.length){
 
+      this.ischecked=true;
+    }else{
+      this.ischecked=false;
+    }
+
+    this.totalPrice();  
   }
 
+  // 计算总价格
   totalPrice(){
     var tempAllprice=0;
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].checked==true) {
         tempAllprice+=this.list[i].product_count*this.list[i].product_price;
-      }
-      this.allPrice=tempAllprice;
+      }     
     }
+    this.allPrice=tempAllprice;
   }
+
+  // 购物车页面的的双向数据绑定
+  // 减少
+  cutCount(item){
+    if (item.product_count>0) {
+      --item.product_count;
+    }
+    this.totalPrice();
+  }
+  // 增加
+  addCount(item){
+    ++item.product_count;
+    this.totalPrice();
+  }
+
+    //离开的时候保存购物车数据
+  ionViewWillLeave(){
+   this.storage.set('carts_data',this.list);
+  }
+
+  doPay(){
+    var tempArr=[];
+
+      for (let i = 0; i < this.list.length; i++) {
+        if (this.list[i].checked) {
+          tempArr.push(this.list[i])
+        }
+        
+      }
+      console.log(tempArr)
+  }
+
+  // 全选，反选
+  changeAll(){
+     console.log(this.ischecked);
+
+
+      if(this.ischecked){ /*选中*/
+
+         for(let i=0;i<this.list.length;i++){
+            this.list[i].checked=false;   
+         }
+
+         this.ischecked=false;
+
+
+      }else{
+         for(let i=0;i<this.list.length;i++){          
+            this.list[i].checked=true;              
+         }
+         this.ischecked=true; 
+      }
+  }
+
+//获取选中的数量
+  getcheckNum(){
+    let thisNum=0;
+    for(let i=0;i<this.list.length;i++){          
+      if(this.list[i].checked==true){
+        thisNum+=1;
+      }
+  }
+    return thisNum;
+  }
+
+
+
+
 
 }

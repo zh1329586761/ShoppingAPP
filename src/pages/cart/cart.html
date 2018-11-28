@@ -14,6 +14,10 @@
 
 
 <ion-content>
+    <div class="cart_spinner" *ngIf="list.length==0" >
+      <ion-spinner></ion-spinner>
+    </div>
+
   <dl class="cart-list" *ngFor="let item of list" >
     <dt>
       <ion-checkbox [(ngModel)]="item.checked"  (ionChange)="changeCarts()"></ion-checkbox>
@@ -24,11 +28,11 @@
       <div class="cart-info">
         <div class="money">{{item.product_price}}</div>
         <div class="add">
-          <div class="add-left">-</div>
+          <div class="add-left" (tap)="cutCount(item)" >-</div>
           <div class="add-text">
-            <input type="text" name="num" id="" [(ngModel)]="item.product_count">
+            <input type="text"  readonly="readonly" name="num" id="num" [(ngModel)]="item.product_count">
           </div>
-          <div class="add-right">+</div>
+          <div class="add-right" (tap)="addCount(item)" >+</div>
         </div>
       </div>
     </dd>
@@ -38,12 +42,12 @@
 
 <ion-footer>
   <ion-toolbar >
-    <div>
-        <ion-checkbox></ion-checkbox>全选
+    <div (tap)="changeAll()">
+        <ion-checkbox disabled="true"  [(ngModel)]="ischecked" ></ion-checkbox>全选
         <strong>合计：{{allPrice}}元</strong>
     </div>
     <ion-buttons end> 
-      <button ion-button color="danger" >结算</button>
+      <button ion-button color="danger" (tap)="doPay()" >结算</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
