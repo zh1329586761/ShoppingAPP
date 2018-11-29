@@ -8,15 +8,23 @@
 
   <ion-navbar>
     <ion-title>我的购物车</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only  (tap)="isEdit=!isEdit" >
+        <ion-icon name="create" *ngIf="isEdit" ></ion-icon>
+        <ion-icon name="checkmark-circle" *ngIf="!isEdit" ></ion-icon>
+      </button> 
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <div class="cart_spinner" *ngIf="list.length==0" >
+    <div class="cart_spinner" *ngIf="list.length==0 && hasData" >
       <ion-spinner></ion-spinner>
     </div>
+    <p class="no_text" *ngIf="!hasData" >购物车没有添加商品!</p>
 
   <dl class="cart-list" *ngFor="let item of list" >
     <dt>
@@ -35,19 +43,30 @@
           <div class="add-right" (tap)="addCount(item)" >+</div>
         </div>
       </div>
-    </dd>
+    </dd> 
   </dl>
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar >
+<ion-footer *ngIf="hasData" >
+  <ion-toolbar *ngIf="!isEdit" >
     <div (tap)="changeAll()">
         <ion-checkbox disabled="true"  [(ngModel)]="ischecked" ></ion-checkbox>全选
         <strong>合计：{{allPrice}}元</strong>
     </div>
     <ion-buttons end> 
-      <button ion-button color="danger" (tap)="doPay()" >结算</button>
+      <div color="danger" (tap)="doPay()" class="doPay">结算</div>
     </ion-buttons>
   </ion-toolbar>
-</ion-footer>
+
+    <ion-toolbar *ngIf="isEdit">
+      <div (tap)="changeAll()">
+          <ion-checkbox disabled="true"  [(ngModel)]="ischecked" ></ion-checkbox>全选
+          <strong>是否删除</strong>
+      </div>
+      <ion-buttons end> 
+        <div  color="danger" (tap)="doDel()" class="doDel">删除</div>
+      </ion-buttons>
+    </ion-toolbar>
+  
+  </ion-footer>

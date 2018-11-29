@@ -93,3 +93,30 @@ ion-toolbar{
     height: 60px;
     margin: 60px auto;
 }
+
+.doPay{
+    height: 3.3rem;
+    width: 5rem;
+    line-height: 3.3rem;
+    text-align: center;
+    color: #fff;
+    background: red;
+    font-size: 2rem;
+    border-radius: .8rem;
+    // padding: 10px 5px;
+}
+.doDel{
+    height: 3.3rem;
+    width: 5rem;
+    line-height: 3.3rem;
+    text-align: center;
+    color: #fff;
+    background: red;
+    border: 1px solid red;
+    font-size: 2rem;
+    border-radius: .8rem;
+}
+.no_text{
+    text-align: center;
+    padding-top: 80px;
+}

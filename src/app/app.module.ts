@@ -20,6 +20,9 @@ import { RegisterpasswordPage } from '../pages/registerpassword/registerpassword
 import { RegistersignPage } from '../pages/registersign/registersign';
 import { ProductlistPage } from '../pages/productlist/productlist';
 import { PersonalPage } from '../pages/personal/personal';
+import { OrdersPage } from '../pages/orders/orders';
+import { AddressPage } from '../pages/address/address';
+import { AddaddressPage } from '../pages/addaddress/addaddress';
 // ceshi
 import { CeshiPage } from '../pages/ceshi/ceshi';
 
@@ -33,6 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ConfigProvider } from '../providers/config/config';
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { StorageProvider } from '../providers/storage/storage';
+import { ToolsProvider } from '../providers/tools/tools';
 
 
 @NgModule({
@@ -53,6 +57,9 @@ import { StorageProvider } from '../providers/storage/storage';
     PcontentPage,
     CeshiPage,
     PersonalPage,
+    OrdersPage,
+    AddaddressPage,
+    AddressPage,
 
   ],
   imports: [
@@ -82,6 +89,9 @@ import { StorageProvider } from '../providers/storage/storage';
     PcontentPage,
     CeshiPage,
     PersonalPage,
+    OrdersPage,
+    AddaddressPage,
+    AddressPage,
   ],
   providers: [
     StatusBar,
@@ -89,7 +99,8 @@ import { StorageProvider } from '../providers/storage/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
     HttpServicesProvider,
-    StorageProvider
+    StorageProvider,
+    ToolsProvider
   ]
 })
 export class AppModule {}

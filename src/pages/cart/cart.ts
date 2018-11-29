@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OrdersPage } from '../../pages/orders/orders';
+import { ToastController } from 'ionic-angular';
 
 import { ConfigProvider } from "../../providers/config/config";
 import { StorageProvider } from "../../providers/storage/storage";
@@ -22,15 +24,26 @@ export class CartPage {
   public isEdit=false;   /*是否编辑*/
 
   public hasData=true;   /*是否有数据*/
+  public OrdersPage=OrdersPage;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public config:ConfigProvider,
-              public storage:StorageProvider) {
+              public storage:StorageProvider,
+              public toastCtrl: ToastController,
+              ) {
+  }
+
+  presentToast() {
+    const toast = this.toastCtrl.create({
+      message: '购物车没有数据',
+      duration: 2000,
+    });
+    toast.present();
   }
 
   ionViewDidEnter(){
    this.getCartData();
-   console.log(this.getcheckNum(),this.list.length);      
+  //  console.log(this.getcheckNum(),this.list.length);      
       //进来的时候判断有没有全选
       if(this.getcheckNum()==this.list.length && this.list.length>0){      
         this.ischecked=true;
@@ -41,7 +54,7 @@ export class CartPage {
 
   getCartData(){
     var cartsData=this.storage.get('carts_data');
-    console.log(cartsData)
+    // console.log(cartsData)
     if (cartsData && cartsData.length>0) {
       this.list=cartsData;
       this.hasData=true;
@@ -96,7 +109,7 @@ export class CartPage {
   ionViewWillLeave(){
    this.storage.set('carts_data',this.list);
   }
-
+// 去付款
   doPay(){
     var tempArr=[];
 
@@ -106,8 +119,33 @@ export class CartPage {
         }
         
       }
-      console.log(tempArr)
+      // console.log(tempArr)
+      // 保存订单的数据
+      if (tempArr.length>0) {
+      this.storage.set('orders_data',tempArr)
+      this.navCtrl.push(OrdersPage)
+    }else{
+      this.presentToast();
+    }
   }
+
+// 删除
+  doDel(){
+    var noChecked=[];
+
+    for (let i = 0; i < this.list.length; i++) {
+      if (!this.list[i].checked) {
+        noChecked.push(this.list[i])
+      }
+      
+    }
+    // 改变当前数据 
+    this.list=noChecked;
+    // 重新写入
+    this.storage.set('carts_data',noChecked);
+}
+  
+
 
   // 全选，反选
   changeAll(){
@@ -142,8 +180,7 @@ export class CartPage {
     return thisNum;
   }
 
-
-
+ 
 
 
 }

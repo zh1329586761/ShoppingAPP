@@ -1,3 +1,4 @@
+import { OrdersPage } from './../orders/orders';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from "../register/register";
@@ -21,13 +22,14 @@ export class LoginPage {
     username:'',
     password:'',
   }
+  public history;
   public RegisterPage=RegisterPage;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public storage:StorageProvider,
               public httpservices:HttpServicesProvider,) {
 
-   
+   this.history=this.navParams.get("history");
 
 
   }
@@ -51,10 +53,14 @@ export class LoginPage {
           console.log(data)
 
           if (data.success) {
-            // alert("登录成功")
-            this.storage.set('userinfo',data.userinfo[0]);
-            this.navCtrl.popToRoot();/* 回到根页面 */
-            
+                // alert("登录成功")
+                this.storage.set('userinfo',data.userinfo[0]);
+                if (this.history=="order ") {  
+                  this.navCtrl.pop()        
+                  // 返回到上一个页面
+                }else{
+                  this.navCtrl.popToRoot();/* 回到根页面 */
+                }
           } else {
             alert(data.message)
           }
