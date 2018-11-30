@@ -14,39 +14,43 @@
 
 
 <ion-content padding>
-    <ion-list inset >
+  
+    <!-- <ion-list class="address_list">
       
-      <ion-item>
+      <ion-item *ngFor="let item of list" >
           <button ion-button clear item-start icon-only >
               <ion-icon name="md-checkmark" color="danger"></ion-icon>
             </button>
-          <h2>徐凤年</h2>
-          <p>浙江省 杭州市 西湖区 中联大厦</p>
+            <h2>{{item.name}}  {{item.phone}}</h2>
           <button ion-button clear item-end icon-only >
               <ion-icon name="ios-create-outline"></ion-icon>
           </button>
       </ion-item>
-      <ion-item>
-          <h2>徐凤年</h2>
-          <p>浙江省 杭州市 西湖区 中联大厦</p>
-          <button ion-button clear item-end icon-only >
+      
+    </ion-list> -->
+
+    <ion-list  class="address_list">
+        <ion-item *ngFor="let item of list;let key=index">        
+          <button ion-button clear item-start icon-only>
+              <ion-icon name="md-checkmark" color="danger"></ion-icon>
+          </button>
+         <div>
+            <h2>{{item.name}}   {{item.phone}}</h2>
+            <p>{{item.address}}</p>
+         </div>
+      
+          <button ion-button clear item-end icon-only>
             <ion-icon name="ios-create-outline"></ion-icon>
           </button>
-      </ion-item>
-      <ion-item>
-          <h2>徐凤年</h2>
-          <p>浙江省 杭州市 西湖区 中联大厦</p>
-          <button ion-button clear item-end icon-only >
-            <ion-icon name="ios-create-outline"></ion-icon>
-          </button>
-      </ion-item>
-    </ion-list>
+        </ion-item>
+      
+      </ion-list>
 </ion-content>
 
 
 <ion-footer>
   <ion-toolbar >
-     <div class="add_address" (click)="goaddaddress()" >
+     <div class="add_address_btn" [navPush]="AddaddressPage">
        +新建收获地址
      </div>
   </ion-toolbar>

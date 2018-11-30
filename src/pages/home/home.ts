@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SearchPage } from '../search/search';
@@ -7,6 +8,7 @@ import {Http,Jsonp} from "@angular/http";
 
 import { ConfigProvider } from '../../providers/config/config';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
+
 
 @Component({
   selector: 'page-home',
@@ -28,7 +30,9 @@ export class HomePage {
               public Config:ConfigProvider,
               public httpservices:HttpServicesProvider,
               private http:Http,
-              private jsonp:Jsonp) {
+              private jsonp:Jsonp,
+              ) {
+                
 
   // 页面加载时调用方法: 
   // 轮播图

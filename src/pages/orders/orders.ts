@@ -40,7 +40,7 @@ export class OrdersPage {
     this.list=this.storage.get('orders_data');
     console.log(this.list)
     // 获取用户信息
-    this.userinfo=this.tools.getUserIfo();
+    this.userinfo=this.tools.getUserInfo();
   }
   
 }

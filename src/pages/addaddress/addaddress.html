@@ -13,6 +13,21 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  
+    <ion-list >
+      <ion-item>
+        <ion-label flexed>姓名</ion-label>
+        <ion-input type="text" placeholder="姓名" [(ngModel)]="addressList.name" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label flexed>联系方式：</ion-label>
+        <ion-input type="text" placeholder="联系方式" [(ngModel)]="addressList.phone" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label flexed>收货地址</ion-label>
+        <ion-input type="text" placeholder="收货地址" [(ngModel)]="addressList.address" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button color="danger" (click)="addAddress()" class="address_btn">+增加</button>
 </ion-content>
