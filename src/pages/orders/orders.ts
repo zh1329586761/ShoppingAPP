@@ -25,6 +25,7 @@ export class OrdersPage {
   public userinfo='';
   public LoginPage=LoginPage;
   public AddressPage=AddressPage;
+  public address='';
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public storage:StorageProvider,
@@ -36,11 +37,46 @@ export class OrdersPage {
   }
 
   ionViewDidEnter(){
-    // 获取订单信息
-    this.list=this.storage.get('orders_data');
-    console.log(this.list)
-    // 获取用户信息
-    this.userinfo=this.tools.getUserInfo();
+  
+  }
+
+  ionViewWillEnter(){
+     // 获取用户信息
+     this.userinfo=this.tools.getUserInfo();
+     // 获取订单信息
+     this.list=this.storage.get('orders_data');
+    //  console.log(this.list)
+   
+     if (this.userinfo) {
+      this.getDefaultAddress();
+     } 
   }
   
+  // 获取默认收货地址
+  getDefaultAddress(){
+    let userinfo:any=this.userinfo;
+    let json={
+      uid:userinfo['_id'],
+      salt:userinfo.salt
+    }
+    let sign =this.tools.sign(json);
+
+    // 请求数据
+    let api='api/oneAddressList?uid='+userinfo['_id']+'&sign='+sign;
+    this.httpService.ruquestData(api,(data)=>{
+      console.log(data)
+      if (data.suceess=true) {
+        console.log(data.result)
+        this.address=data.result[0];
+      } else {
+        this.address=''
+      }
+    })
+  }
+  // 去结算
+  goPayment(){
+    alert("余额不足")
+  }
 }
+
+ 

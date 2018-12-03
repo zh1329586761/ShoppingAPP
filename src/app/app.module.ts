@@ -23,6 +23,7 @@ import { PersonalPage } from '../pages/personal/personal';
 import { OrdersPage } from '../pages/orders/orders';
 import { AddressPage } from '../pages/address/address';
 import { AddaddressPage } from '../pages/addaddress/addaddress';
+import { EditaddressPage } from '../pages/editaddress/editaddress';
 // ceshi
 import { CeshiPage } from '../pages/ceshi/ceshi';
 
@@ -30,6 +31,7 @@ import { CeshiPage } from '../pages/ceshi/ceshi';
 import { SearchPage } from '../pages/search/search';
 // 商品详情
 import { PcontentPage } from '../pages/pcontent/pcontent';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,6 +62,7 @@ import { ToolsProvider } from '../providers/tools/tools';
     OrdersPage,
     AddaddressPage,
     AddressPage,
+    EditaddressPage,
 
   ],
   imports: [
@@ -92,6 +95,7 @@ import { ToolsProvider } from '../providers/tools/tools';
     OrdersPage,
     AddaddressPage,
     AddressPage,
+    EditaddressPage
   ],
   providers: [
     StatusBar,

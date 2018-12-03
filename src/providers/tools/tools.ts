@@ -22,7 +22,11 @@ export class ToolsProvider {
   
   getUserInfo(){
     var userinfo=this.storage.get("userinfo");
-    return userinfo;
+    if (userinfo) {
+      return userinfo;
+    } else {
+      return '';
+    }
    
   }
 

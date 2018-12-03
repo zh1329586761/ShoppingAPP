@@ -31,15 +31,15 @@
 
     <ion-list  class="address_list">
         <ion-item *ngFor="let item of list;let key=index">        
-          <button ion-button clear item-start icon-only>
+          <button ion-button clear item-start icon-only  *ngIf="item.default_address">
               <ion-icon name="md-checkmark" color="danger"></ion-icon>
           </button>
-         <div>
+         <div (tap)="changeAddress(item._id)"  (press)="deleteAddress(key,item._id)">
             <h2>{{item.name}}   {{item.phone}}</h2>
             <p>{{item.address}}</p>
          </div>
       
-          <button ion-button clear item-end icon-only>
+          <button ion-button clear item-end icon-only (tap)="editAddress(item)">
             <ion-icon name="ios-create-outline"></ion-icon>
           </button>
         </ion-item>

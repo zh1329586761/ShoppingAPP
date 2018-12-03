@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 295:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CeshiPageModule", function() { return CeshiPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditaddressPageModule", function() { return EditaddressPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ceshi__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editaddress__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CeshiPageModule = /** @class */ (function () {
-    function CeshiPageModule() {
+var EditaddressPageModule = /** @class */ (function () {
+    function EditaddressPageModule() {
     }
-    CeshiPageModule = __decorate([
+    EditaddressPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ceshi__["a" /* CeshiPage */],
+                __WEBPACK_IMPORTED_MODULE_2__editaddress__["a" /* EditaddressPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ceshi__["a" /* CeshiPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__editaddress__["a" /* EditaddressPage */]),
             ],
         })
-    ], CeshiPageModule);
-    return CeshiPageModule;
+    ], EditaddressPageModule);
+    return EditaddressPageModule;
 }());
 
-//# sourceMappingURL=ceshi.module.js.map
+//# sourceMappingURL=editaddress.module.js.map
 
 /***/ })
 
