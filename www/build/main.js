@@ -7,9 +7,9 @@ webpackJsonp([17],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddaddressPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -110,9 +110,9 @@ var AddaddressPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addaddress_addaddress__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_tools_tools__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_tools_tools__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editaddress_editaddress__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -283,6 +283,9 @@ var AddressPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditaddressPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -294,6 +297,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 /**
  * Generated class for the EditaddressPage page.
  *
@@ -301,24 +307,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var EditaddressPage = /** @class */ (function () {
-    function EditaddressPage(navCtrl, navParams) {
+    function EditaddressPage(navCtrl, navParams, tools, Config, httpservices) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.tools = tools;
+        this.Config = Config;
+        this.httpservices = httpservices;
         this.addressList = [];
     }
-    EditaddressPage.prototype.ionViewWillLoad = function () {
+    EditaddressPage.prototype.ionViewWillEnter = function () {
         this.addressList = this.navParams.get('item');
     };
     EditaddressPage.prototype.editAddress = function () {
+        var _this = this;
         // 修改
+        if (this.addressList.name != '' || this.addressList.phone != '' || this.addressList.address != '') {
+            var userinfo = this.tools.getUserInfo();
+            var json = {
+                id: this.addressList._id,
+                uid: userinfo._id,
+                salt: userinfo.salt,
+                name: this.addressList.name,
+                phone: this.addressList.phone,
+                address: this.addressList.address
+            };
+            console.log(json);
+            var sign = this.tools.sign(json); /* 生成签名 */
+            var api = 'api/editAddress';
+            this.httpservices.doPost(api, {
+                id: this.addressList._id,
+                uid: userinfo._id,
+                sign: sign,
+                name: this.addressList.name,
+                phone: this.addressList.phone,
+                address: this.addressList.address
+            }, function (data) {
+                console.log(data);
+                if (data.success) {
+                    _this.navCtrl.pop();
+                }
+                else {
+                    alert(data.message);
+                }
+            });
+        }
+        else {
+            alert("收货地址错误咯");
+        }
     };
     EditaddressPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-editaddress',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/'<!--\n  Generated template for the EditaddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n--><ion-header>\n\n  <ion-navbar>\n    <ion-title>修改收获地址</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  \n    <ion-list >\n      <ion-item>\n        <ion-label flexed>姓名</ion-label>\n        <ion-input type="text" placeholder="姓名" [(ngModel)]="addressList.name" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>联系方式：</ion-label>\n        <ion-input type="text" placeholder="联系方式" [(ngModel)]="addressList.phone" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>收货地址</ion-label>\n        <ion-input type="text" placeholder="收货地址" [(ngModel)]="addressList.address" ></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button color="danger" (click)="addAddress()" class="address_btn">修改</button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/,
+            selector: 'page-editaddress',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/'<!--\n  Generated template for the EditaddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n--><ion-header>\n\n  <ion-navbar>\n    <ion-title>修改收获地址</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  \n    <ion-list >\n      <ion-item>\n        <ion-label flexed>姓名</ion-label>\n        <ion-input type="text" placeholder="姓名" [(ngModel)]="addressList.name" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>联系方式：</ion-label>\n        <ion-input type="text" placeholder="联系方式" [(ngModel)]="addressList.phone" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>收货地址</ion-label>\n        <ion-input type="text" placeholder="收货地址" [(ngModel)]="addressList.address" ></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button color="danger" (click)="editAddress()" class="address_btn">修改</button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */]) === "function" && _e || Object])
     ], EditaddressPage);
     return EditaddressPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=editaddress.js.map
@@ -335,9 +379,9 @@ var EditaddressPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -439,7 +483,7 @@ var OrdersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registerpassword_registerpassword__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -550,7 +594,7 @@ var RegistersignPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterpasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -635,7 +679,7 @@ var RegisterpasswordPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CeshiPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(19);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -695,8 +739,8 @@ var CeshiPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productlist_productlist__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -786,8 +830,8 @@ var CategoryPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductlistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -871,67 +915,13 @@ var ProductlistPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PersonalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__ = __webpack_require__(14);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the PersonalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var PersonalPage = /** @class */ (function () {
-    function PersonalPage(navCtrl, navParams, storage) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.storage = storage;
-    }
-    PersonalPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PersonalPage');
-    };
-    PersonalPage.prototype.loginOut = function () {
-        //用户信息保存在localstorage
-        this.storage.remove('userinfo');
-        //跳转到用户中心
-        this.navCtrl.popToRoot();
-    };
-    PersonalPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-personal',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/'<!--\n  Generated template for the PersonalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>账户资料</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-list inset class="personal">\n    <ion-item>\n         头像\n        <span class="item-note">\n            <img  src="../../assets/imgs/pc16.jpg" class="avatar"/>\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n\n      <ion-item>\n        \n        用户名\n        <span class="item-note">\n          张全蛋\n        </span>         \n        \n        <ion-icon name="ios-arrow-forward" item-end style="visibility:hidden"></ion-icon>\n      </ion-item>\n\n      <ion-item class="item-icon-right">\n          \n          昵称\n        <span class="item-note">\n          天王盖地虎\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>            \n        <ion-label>性别</ion-label>\n        <ion-select>\n          <ion-option value="man" selected="true">男</ion-option>\n          <ion-option value="woman">女</ion-option>\n          <ion-option value="null">保密</ion-option>\n        </ion-select>\n\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>出生年月</ion-label>\n        <ion-select>\n          <ion-option value="01">1月</ion-option>\n          <ion-option value="02">2月</ion-option>\n          <ion-option value="03" selected="true">3月</ion-option>\n          <ion-option value="04">4月</ion-option>\n          <ion-option value="05">5月</ion-option>\n          <ion-option value="06">6月</ion-option>\n          <ion-option value="07">7月</ion-option>\n          <ion-option value="08">8月</ion-option>\n          <ion-option value="09">9月</ion-option>\n          <ion-option value="10">10月</ion-option>\n          <ion-option value="11">11月</ion-option>\n          <ion-option value="12">12月</ion-option>\n        </ion-select>\n        \n        <ion-select>\n          <ion-option>2019年</ion-option>\n          <ion-option>2018年</ion-option>\n          <ion-option>2017年</ion-option>\n          <ion-option>2016年</ion-option>\n          <ion-option>2015年</ion-option>\n          <ion-option selected="true">2014年</ion-option>\n          <ion-option>2013年</ion-option>\n          <ion-option>2012年</ion-option>\n          <ion-option>2011年</ion-option>\n          <ion-option>2010年</ion-option>\n          <ion-option>2009年</ion-option>\n        </ion-select>\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n</ion-list>\n\n<button ion-button block color="danger" class="exit_btn" (tap)="loginOut()">退出登录</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]])
-    ], PersonalPage);
-    return PersonalPage;
-}());
-
-//# sourceMappingURL=personal.js.map
-
-/***/ }),
-
-/***/ 117:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PcontentPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cart_cart__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1149,6 +1139,60 @@ var PcontentPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 117:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PersonalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the PersonalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PersonalPage = /** @class */ (function () {
+    function PersonalPage(navCtrl, navParams, storage) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.storage = storage;
+    }
+    PersonalPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PersonalPage');
+    };
+    PersonalPage.prototype.loginOut = function () {
+        //用户信息保存在localstorage
+        this.storage.remove('userinfo');
+        //跳转到用户中心
+        this.navCtrl.popToRoot();
+    };
+    PersonalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-personal',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/'<!--\n  Generated template for the PersonalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>账户资料</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-list inset class="personal">\n    <ion-item>\n         头像\n        <span class="item-note">\n            <img  src="../../assets/imgs/pc16.jpg" class="avatar"/>\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n\n      <ion-item>\n        \n        用户名\n        <span class="item-note">\n          张全蛋\n        </span>         \n        \n        <ion-icon name="ios-arrow-forward" item-end style="visibility:hidden"></ion-icon>\n      </ion-item>\n\n      <ion-item class="item-icon-right">\n          \n          昵称\n        <span class="item-note">\n          天王盖地虎\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>            \n        <ion-label>性别</ion-label>\n        <ion-select>\n          <ion-option value="man" selected="true">男</ion-option>\n          <ion-option value="woman">女</ion-option>\n          <ion-option value="null">保密</ion-option>\n        </ion-select>\n\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>出生年月</ion-label>\n        <ion-select>\n          <ion-option value="01">1月</ion-option>\n          <ion-option value="02">2月</ion-option>\n          <ion-option value="03" selected="true">3月</ion-option>\n          <ion-option value="04">4月</ion-option>\n          <ion-option value="05">5月</ion-option>\n          <ion-option value="06">6月</ion-option>\n          <ion-option value="07">7月</ion-option>\n          <ion-option value="08">8月</ion-option>\n          <ion-option value="09">9月</ion-option>\n          <ion-option value="10">10月</ion-option>\n          <ion-option value="11">11月</ion-option>\n          <ion-option value="12">12月</ion-option>\n        </ion-select>\n        \n        <ion-select>\n          <ion-option>2019年</ion-option>\n          <ion-option>2018年</ion-option>\n          <ion-option>2017年</ion-option>\n          <ion-option>2016年</ion-option>\n          <ion-option>2015年</ion-option>\n          <ion-option selected="true">2014年</ion-option>\n          <ion-option>2013年</ion-option>\n          <ion-option>2012年</ion-option>\n          <ion-option>2011年</ion-option>\n          <ion-option>2010年</ion-option>\n          <ion-option>2009年</ion-option>\n        </ion-select>\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n</ion-list>\n\n<button ion-button block color="danger" class="exit_btn" (tap)="loginOut()">退出登录</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]])
+    ], PersonalPage);
+    return PersonalPage;
+}());
+
+//# sourceMappingURL=personal.js.map
+
+/***/ }),
+
 /***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1201,8 +1245,8 @@ var Register2Page = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1359,91 +1403,14 @@ var SearchPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 120:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__personal_personal__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__ = __webpack_require__(14);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-/**
- * Generated class for the UserPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var UserPage = /** @class */ (function () {
-    function UserPage(navCtrl, navParams, storage, httpservices) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.storage = storage;
-        this.httpservices = httpservices;
-        this.LoginPage = __WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */];
-        this.Register2Page = __WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */];
-        this.RegisterPage = __WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */];
-        this.PersonalPage = __WEBPACK_IMPORTED_MODULE_5__personal_personal__["a" /* PersonalPage */];
-        // public isLogin=false;
-        this.userinfo = '';
-    }
-    UserPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UserPage');
-    };
-    UserPage.prototype.ionViewWillEnter = function () {
-        var userinfo = this.storage.get("userinfo");
-        if (userinfo && userinfo.username) {
-            this.userinfo = userinfo;
-        }
-        else {
-            this.userinfo = '';
-        }
-    };
-    UserPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>用户</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="login" *ngIf="!userinfo" >\n    <div class="usering">\n        <img src="../../assets/imgs/pc5.jpg" />\n    </div>\n\n    <div class="login-btn">\n      <button ion-button [navPush]=\'LoginPage\'>登陆</button>\n      <button ion-button [navPush]=\'RegisterPage\'>注册</button>\n    </div>\n\n  </div>\n\n  <ion-list *ngIf="userinfo" >\n    <ion-item [navPush]="PersonalPage">\n        <ion-avatar item-start>\n          <img src="../../assets/imgs/pc19.jpg">\n        </ion-avatar>\n        <h2>用户名:{{userinfo.username}}</h2>\n        <p>璀璨钻石</p>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n  </ion-list>\n\n\n  <ion-list inset >\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="ios-paper-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待付款</span>\n          <ion-icon name="ios-card-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待发货</span>\n          <ion-icon name="jet" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待收货</span>\n          <ion-icon name="basket" item-end></ion-icon>\n      </ion-item>\n\n\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="heart" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="contacts" item-end></ion-icon>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__["a" /* StorageProvider */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
-    ], UserPage);
-    return UserPage;
-}());
-
-//# sourceMappingURL=user.js.map
-
-/***/ }),
-
-/***/ 13:
+/***/ 12:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpServicesProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_config_config__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_config_config__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1508,6 +1475,83 @@ var HttpServicesProvider = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=http-services.js.map
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__personal_personal__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the UserPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var UserPage = /** @class */ (function () {
+    function UserPage(navCtrl, navParams, storage, httpservices) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.storage = storage;
+        this.httpservices = httpservices;
+        this.LoginPage = __WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */];
+        this.Register2Page = __WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */];
+        this.RegisterPage = __WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */];
+        this.PersonalPage = __WEBPACK_IMPORTED_MODULE_5__personal_personal__["a" /* PersonalPage */];
+        // public isLogin=false;
+        this.userinfo = '';
+    }
+    UserPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UserPage');
+    };
+    UserPage.prototype.ionViewWillEnter = function () {
+        var userinfo = this.storage.get("userinfo");
+        if (userinfo && userinfo.username) {
+            this.userinfo = userinfo;
+        }
+        else {
+            this.userinfo = '';
+        }
+    };
+    UserPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-user',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>用户</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="login" *ngIf="!userinfo" >\n    <div class="usering">\n        <img src="../../assets/imgs/pc5.jpg" />\n    </div>\n\n    <div class="login-btn">\n      <button ion-button [navPush]=\'LoginPage\'>登陆</button>\n      <button ion-button [navPush]=\'RegisterPage\'>注册</button>\n    </div>\n\n  </div>\n\n  <ion-list *ngIf="userinfo" >\n    <ion-item [navPush]="PersonalPage">\n        <ion-avatar item-start>\n          <img src="../../assets/imgs/pc19.jpg">\n        </ion-avatar>\n        <h2>用户名:{{userinfo.username}}</h2>\n        <p>璀璨钻石</p>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n  </ion-list>\n\n\n  <ion-list inset >\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="ios-paper-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待付款</span>\n          <ion-icon name="ios-card-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待发货</span>\n          <ion-icon name="jet" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待收货</span>\n          <ion-icon name="basket" item-end></ion-icon>\n      </ion-item>\n\n\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="heart" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="contacts" item-end></ion-icon>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__["a" /* StorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
+    ], UserPage);
+    return UserPage;
+}());
+
+//# sourceMappingURL=user.js.map
 
 /***/ }),
 
@@ -1580,6 +1624,46 @@ var StorageProvider = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 15:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// import { HttpClient } from '@angular/common/http';
+
+/*
+  Generated class for the ConfigProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ConfigProvider = /** @class */ (function () {
+    function ConfigProvider() {
+        // 公共请求数据地址前缀
+        this.apiUrl = "http://39.108.159.135/";
+        console.log('Hello ConfigProvider Provider');
+    }
+    ConfigProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], ConfigProvider);
+    return ConfigProvider;
+}());
+
+//# sourceMappingURL=config.js.map
+
+/***/ }),
+
 /***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1617,11 +1701,11 @@ var map = {
 		9
 	],
 	"../pages/pcontent/pcontent.module": [
-		301,
+		300,
 		8
 	],
 	"../pages/personal/personal.module": [
-		300,
+		301,
 		7
 	],
 	"../pages/productlist/productlist.module": [
@@ -1666,46 +1750,6 @@ webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 };
 webpackAsyncContext.id = 171;
 module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-// import { HttpClient } from '@angular/common/http';
-
-/*
-  Generated class for the ConfigProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var ConfigProvider = /** @class */ (function () {
-    function ConfigProvider() {
-        // 公共请求数据地址前缀
-        this.apiUrl = "http://39.108.159.135/";
-        console.log('Hello ConfigProvider Provider');
-    }
-    ConfigProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
-    ], ConfigProvider);
-    return ConfigProvider;
-}());
-
-//# sourceMappingURL=config.js.map
 
 /***/ }),
 
@@ -1761,10 +1805,10 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_search__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_pcontent_pcontent__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_pcontent_pcontent__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1903,20 +1947,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registerpassword_registerpassword__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_registersign_registersign__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_productlist_productlist__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_personal_personal__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_personal_personal__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_orders_orders__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_address_address__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_addaddress_addaddress__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_editaddress_editaddress__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ceshi_ceshi__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_search_search__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_pcontent_pcontent__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_pcontent_pcontent__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_status_bar__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_splash_screen__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_config_config__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_storage_storage__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_tools_tools__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_tools_tools__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2003,8 +2047,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/editaddress/editaddress.module#EditaddressPageModule', name: 'EditaddressPage', segment: 'editaddress', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/personal/personal.module#PersonalPageModule', name: 'PersonalPage', segment: 'personal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pcontent/pcontent.module#PcontentPageModule', name: 'PcontentPage', segment: 'pcontent', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/personal/personal.module#PersonalPageModule', name: 'PersonalPage', segment: 'personal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/productlist/productlist.module#ProductlistPageModule', name: 'ProductlistPage', segment: 'productlist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register2/register2.module#Register2PageModule', name: 'Register2Page', segment: 'register2', priority: 'low', defaultHistory: [] },
@@ -2102,7 +2146,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 50:
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2184,7 +2228,7 @@ var ToolsProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_orders_orders__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_config_config__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2372,7 +2416,7 @@ var CartPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2465,7 +2509,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registersign_registersign__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ceshi_ceshi__ = __webpack_require__(113);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
