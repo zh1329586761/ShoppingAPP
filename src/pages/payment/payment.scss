@@ -1,0 +1,33 @@
+page-payment {
+    // .list-ios[inset] {
+    //     margin: 0;
+    // }
+    button {
+        border-bottom: 0.55px solid #c8c7cc;
+    }
+    
+    .order_footer{
+        // display: flex;
+        // span{
+        //     flex: 1;
+        //     display: inline-block;
+        //     height: 4.4rem;
+        //     line-height: 4.4rem;
+        //     text-align: center;
+        //     color:red;
+        //     font-size: 1.8rem
+        // }
+        .buy_order{
+            width:15rem;
+         
+            height: 4.4rem;
+            line-height: 4.4rem;
+            text-align: center;
+            color: #fff;
+            background: red;
+            font-size: 1.6rem;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+    }
+}

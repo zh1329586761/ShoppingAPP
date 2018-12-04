@@ -89,8 +89,8 @@ var AddaddressPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-addaddress',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\addaddress\addaddress.html"*/'<!--\n  Generated template for the AddaddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>新建收获地址</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  \n    <ion-list >\n      <ion-item>\n        <ion-label flexed>姓名</ion-label>\n        <ion-input type="text" placeholder="姓名" [(ngModel)]="addressList.name" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>联系方式：</ion-label>\n        <ion-input type="text" placeholder="联系方式" [(ngModel)]="addressList.phone" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>收货地址</ion-label>\n        <ion-input type="text" placeholder="收货地址" [(ngModel)]="addressList.address" ></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button color="danger" (click)="addAddress()" class="address_btn">+增加</button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\addaddress\addaddress.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
@@ -263,8 +263,8 @@ var AddressPage = /** @class */ (function () {
             selector: 'page-address',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\address\address.html"*/'<!--\n  Generated template for the AddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>收货地址列表</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n    <!-- <ion-list class="address_list">\n      \n      <ion-item *ngFor="let item of list" >\n          <button ion-button clear item-start icon-only >\n              <ion-icon name="md-checkmark" color="danger"></ion-icon>\n            </button>\n            <h2>{{item.name}}  {{item.phone}}</h2>\n          <button ion-button clear item-end icon-only >\n              <ion-icon name="ios-create-outline"></ion-icon>\n          </button>\n      </ion-item>\n      \n    </ion-list> -->\n\n    <ion-list  class="address_list">\n        <ion-item *ngFor="let item of list;let key=index">        \n          <button ion-button clear item-start icon-only  *ngIf="item.default_address">\n              <ion-icon name="md-checkmark" color="danger"></ion-icon>\n          </button>\n         <div (tap)="changeAddress(item._id)"  (press)="deleteAddress(key,item._id)">\n            <h2>{{item.name}}   {{item.phone}}</h2>\n            <p>{{item.address}}</p>\n         </div>\n      \n          <button ion-button clear item-end icon-only (tap)="editAddress(item)">\n            <ion-icon name="ios-create-outline"></ion-icon>\n          </button>\n        </ion-item>\n      \n      </ion-list>\n</ion-content>\n\n\n<ion-footer>\n  <ion-toolbar >\n     <div class="add_address_btn" [navPush]="AddaddressPage">\n       +新建收获地址\n     </div>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\address\address.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_tools_tools__["a" /* ToolsProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
@@ -359,10 +359,13 @@ var EditaddressPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-editaddress',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/'<!--\n  Generated template for the EditaddressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n--><ion-header>\n\n  <ion-navbar>\n    <ion-title>修改收获地址</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  \n    <ion-list >\n      <ion-item>\n        <ion-label flexed>姓名</ion-label>\n        <ion-input type="text" placeholder="姓名" [(ngModel)]="addressList.name" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>联系方式：</ion-label>\n        <ion-input type="text" placeholder="联系方式" [(ngModel)]="addressList.phone" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label flexed>收货地址</ion-label>\n        <ion-input type="text" placeholder="收货地址" [(ngModel)]="addressList.address" ></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button color="danger" (click)="editAddress()" class="address_btn">修改</button>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\editaddress\editaddress.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_tools_tools__["a" /* ToolsProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
     ], EditaddressPage);
     return EditaddressPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=editaddress.js.map
@@ -382,6 +385,7 @@ var EditaddressPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__payment_payment__ = __webpack_require__(309);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -391,6 +395,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -417,7 +422,9 @@ var OrdersPage = /** @class */ (function () {
         this.userinfo = '';
         this.LoginPage = __WEBPACK_IMPORTED_MODULE_1__login_login__["a" /* LoginPage */];
         this.AddressPage = __WEBPACK_IMPORTED_MODULE_0__address_address__["a" /* AddressPage */];
+        this.leaveWord = '';
         this.address = '';
+        this.allPrice = 0;
     }
     OrdersPage.prototype.ionViewDidEnter = function () {
     };
@@ -429,6 +436,10 @@ var OrdersPage = /** @class */ (function () {
         //  console.log(this.list)
         if (this.userinfo) {
             this.getDefaultAddress();
+        }
+        if (this.list) {
+            //  调用计算总价的方法
+            this.totalPrice();
         }
     };
     // 获取默认收货地址
@@ -455,20 +466,72 @@ var OrdersPage = /** @class */ (function () {
     };
     // 去结算
     OrdersPage.prototype.goPayment = function () {
-        alert("余额不足");
+        var _this = this;
+        // console.log(this.userinfo);
+        // console.log(this.address);
+        // console.log(this.list);
+        if (!this.userinfo) {
+            this.navCtrl.push('LoginPage', { history: 'order' });
+        }
+        else if (!this.address) {
+            alert("您还未选择收货地址");
+        }
+        else {
+            var userinfo = this.userinfo;
+            var uid = userinfo['_id'];
+            var address = this.address['address'];
+            var phone = this.address['phone'];
+            var name = this.address['name'];
+            var all_price = this.allPrice;
+            var products = JSON.stringify(this.list);
+            var json = {
+                uid: userinfo._id,
+                salt: userinfo.salt,
+                address: address,
+                phone: phone,
+                name: name,
+                all_price: all_price
+            };
+            var sign = this.tools.sign(json);
+            var api = 'api/doOrder';
+            this.httpService.doPost(api, {
+                uid: userinfo._id,
+                salt: userinfo.salt,
+                sign: sign,
+                address: address,
+                phone: phone,
+                name: name,
+                all_price: all_price,
+                products: products
+            }, function (data) {
+                if (data.success) {
+                    console.log(data);
+                    // alert("成功")
+                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__payment_payment__["a" /* PaymentPage */]);
+                }
+                else {
+                    alert(data.message);
+                }
+            });
+        }
+    };
+    OrdersPage.prototype.totalPrice = function () {
+        var tempAllPrice = 0;
+        for (var i = 0; i < this.list.length; i++) {
+            if (this.list[i].checked == true) {
+                tempAllPrice += this.list[i].product_count * this.list[i].product_price;
+            }
+        }
+        this.allPrice = tempAllPrice;
     };
     OrdersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["m" /* Component */])({
             selector: 'page-orders',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\orders\orders.html"*/'<!--\n  Generated template for the OrdersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>确认订单</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div class="order">\n        <div class="address_list">\n\n          <ion-list *ngIf="userinfo && !address">\n              <ion-item [navPush]=\'AddressPage\'>\n                  <ion-icon name="ios-pin-outline" item-start></ion-icon>\n\n                  请添加您的收货地址\n                  <ion-icon name="ios-arrow-forward"  item-end></ion-icon>\n\n              </ion-item>\n          </ion-list>\n\n\n          <ion-list *ngIf="userinfo && address">\n            <ion-item [navPush]=\'AddressPage\'>\n                <h2>{{address.name}}   {{address.phone}}</h2>\n                <p>{{address.address}}</p>\n                <ion-icon name="ios-arrow-forward"  item-end></ion-icon>\n            </ion-item>\n        </ion-list>\n\n\n\n          <ion-list *ngIf="!userinfo">\n              <ion-item class="nologin">                \n                  <p>您还没有登录，登录后同步您的订单信息...</p>\n                  <button ion-button color="light"  [navPush]=\'LoginPage\' [navParams]="{history:\'order\'}">登录</button>\n                  \n              </ion-item>\n          </ion-list>\n\n        </div>\n\n        <div class="product_list">\n\n            <ion-list>\n              <ion-item *ngFor="let item of list" >\n                <ion-thumbnail item-left>\n                  <img [src]="config.apiUrl+item.product_pic" />\n                </ion-thumbnail>\n                <h2>{{item.product_title}}</h2>\n                <p><span class="price">¥{{item.product_price}}</span> <span class="count">x{{item.product_count}}</span></p>\n                \n                <p>属性：{{item.product_attr}}</p>\n\n              </ion-item>\n            </ion-list>\n\n\n              <ion-list inset class="submit_info">\n                  <ion-item>                   \n                    <p>在线支付</p>\n                    <p>京东快递+快递运输</p>\n                    <p>工作日、双休日于假日均可送货</p>\n                  \n                  </ion-item>\n                  <ion-item-divider>\n                    \n                  </ion-item-divider>\n                  <ion-item class="order_price">\n                      <ul>\n                        <li>商品总金额 <span>¥{{allPrice}}</span></li>\n                        <li>立减 <span>-¥0</span></li>\n                        <li>运费 <span>+¥0</span></li>\n                      </ul>\n                  </ion-item>\n\n                  <ion-item-divider>\n                    \n                  </ion-item-divider>\n                  <ion-item>\n                      <input [(ngModel)]=\'leaveWord\' type="text" placeholder="选填:给商家留言45字以内" />\n                  </ion-item>\n            \n              </ion-list>\n        </div>\n  </div>\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar>\n      <div class="order_footer">\n  \n        <span>实付款: ¥{{allPrice}}</span>\n       \n        <div class="buy_order" (tap)="goPayment()">\n            立即下单\n        </div>\n      </div>\n    </ion-toolbar>\n  </ion-footer>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\orders\orders.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_config_config__["a" /* ConfigProvider */],
-            __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__["a" /* ToolsProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__providers_config_config__["a" /* ConfigProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_config_config__["a" /* ConfigProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__["a" /* ToolsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_tools_tools__["a" /* ToolsProvider */]) === "function" && _f || Object])
     ], OrdersPage);
     return OrdersPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=orders.js.map
@@ -575,8 +638,8 @@ var RegistersignPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-registersign',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\registersign\registersign.html"*/'<!--\n  Generated template for the RegistersignPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>发送短信界面</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div class="code-info">\n    <h4 class="positive">马上验证手机,激活你的账户</h4>\n    <p class="code-sign-p">验证码已通过短信方式发送至{{tel}},请输入验证码完成验证登录!</p>\n  </div>\n\n  <div class="sign-page">\n    <input type="text" [(ngModel)]="code" placeholder="验证码" maxlength="4">\n    <div class="timer" *ngIf="!showcode" >倒计时{{num}}</div>\n    <div class="timer" *ngIf="showcode"  (tap)="sendCode()">重新发送</div>\n  </div>\n\n  <button ion-button  block class="msg-btn" (tap)="goRegisterpasswordPage()" >下一步</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\registersign\registersign.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__["a" /* StorageProvider */]])
     ], RegistersignPage);
@@ -660,8 +723,8 @@ var RegisterpasswordPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-registerpassword',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\registerpassword\registerpassword.html"*/'<!--\n  Generated template for the RegisterpasswordPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>填写密码界面</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list >\n  \n      <ion-item id="lf">\n          \n          <ion-input type="password" placeholder="请输入密码" [(ngModel)]="password"></ion-input>\n      </ion-item>\n      <ion-item id="lf">\n          \n          <ion-input type="password" placeholder="确认密码" [(ngModel)]="rpassword"></ion-input>\n      </ion-item>\n      \n      <ion-item no-lines class="reg-text" id="lf">\n        <span item-end>\n          本密码由6-26为字母、数字、特殊符号组成，注意大小写!\n        </span>\n      </ion-item>\n\n    </ion-list>\n\n     <button ion-button  block class="next-btn"  (click)="doRegister()" >完成</button>\n\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\registerpassword\registerpassword.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_storage_storage__["a" /* StorageProvider */],
             __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
     ], RegisterpasswordPage);
@@ -721,7 +784,7 @@ var CeshiPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-ceshi',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\ceshi\ceshi.html"*/'<!--\n  Generated template for the CeshiPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>注册</ion-title>\n      </ion-navbar>\n  </ion-header>\n  <ion-content fullscreen>\n    <form [formGroup]="RegisterForm" (ngSubmit)="Register(RegisterForm.value)" novalidate>\n        <ion-input type="text" placeholder="用户名" value="" [formControl]="name" clearInput=true maxlength="15"></ion-input>\n        <div *ngIf="name.hasError(\'required\') && name.touched"   class="error-message" color="danger">请输入用户名</div>\n        <ion-input type="text" placeholder="邮箱" value="" [formControl]="email" clearInput=true maxlength="60"></ion-input>\n        <div *ngIf="email.hasError(\'required\') && email.touched" class="error-message" color="danger">请输入邮箱</div>\n        <div *ngIf="!email.hasError(\'required\')&&email.hasError(\'email\') && email.touched" class="error-message" color="danger">邮箱格式不正确</div>\n        <ion-input type="password" placeholder="密码" value="" [formControl]="password" clearInput=true></ion-input>\n        <div *ngIf="password.hasError(\'required\') && password.touched"  color="danger" class="error-message">请输入密码</div>\n        <div *ngIf="(password.hasError(\'minlength\')) && password.touched"  color="danger" class="error-message">密码长度最少为六位</div>\n        <ion-input type="password" placeholder="确认密码" value="" [formControl]="repassword" clearInput=true></ion-input>\n        <div *ngIf="repassword.hasError(\'required\') && repassword.touched" color="danger" class="error-message">请输入确认密码</div>\n        <div *ngIf="(repassword.hasError(\'minlength\')) && repassword.touched" color="danger" class="error-message">确认密码长度最少为六位</div>\n        <!--密码不一致的判断要在必填和位数判断后面，也就是它们两个都没有错误时，再去判断密码是否一样-->\n        <div *ngIf="!repassword.hasError(\'required\')&&!repassword.hasError(\'minlength\')&&password.value!=repassword.value" color="danger" class="error-message">两次输入的密码不一致</div>\n        <!--注册按钮原本只有!RegisterForm.valid，但由于密码不一致不是自带的，还要在这里单独加判断-->\n        <button ion-button block color="danger" type="submit" [disabled]="!RegisterForm.valid||(password.value!=repassword.value)">确认注册</button>\n    </form>\n</ion-content>\n  '/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\ceshi\ceshi.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
     ], CeshiPage);
     return CeshiPage;
@@ -811,8 +874,8 @@ var CategoryPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-category',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\category\category.html"*/'<!--\n  Generated template for the CategoryPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-searchbar></ion-searchbar>\n      <ion-buttons end>\n          <button  ion-button icon-only>\n            <ion-icon name="search"></ion-icon>\n          </button>\n        </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  phone\n<div class="cate-content">\n  <div class="cate-left">\n    <ion-list>\n      <ion-item *ngFor="let item of leftcate"  (tap)="getRightCateData(item[\'_id\'])">\n        <p>{{item.title}}</p>\n      </ion-item>\n      \n    </ion-list>\n  </div>\n\n  <div class="cate-right">\n    <ion-row>\n      <ion-col col-6 *ngFor="let item of rightcate" [navPush]="ProductlistPage" [navParams]="{\'cid\':item[\'_id\']}">    <!--  col总的为12   col-6即分为两份  col-4分为三份 以此类推 -->\n        <img [src]="Config.apiUrl+item.pic" alt="">\n          <p>{{item.title}}</p>\n      </ion-col>\n    </ion-row>\n  </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\category\category.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
     ], CategoryPage);
@@ -899,8 +962,8 @@ var ProductlistPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-productlist',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\productlist\productlist.html"*/'<!--\n  Generated template for the ProductlistPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-searchbar></ion-searchbar>\n      <ion-buttons end>\n          <button  ion-button icon-only>\n            <ion-icon name="search"></ion-icon>\n          </button>\n        </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="list-content" *ngIf="!flag" >\n\n    <div class="sub-header">\n      <div>综合</div>\n      <div>销量</div>\n      <div>价格</div>\n    </div>\n\n\n    <ion-list inset>\n      <ion-item *ngFor="let item of list" >\n        <ion-thumbnail item-left>\n          <img [src]="config.apiUrl+item.s_pic">\n        </ion-thumbnail>\n        <h2>{{item.title}}</h2>\n        <p>价格: <span class="price">{{item.price}}</span>元</p>\n      </ion-item>\n    </ion-list>\n  </div>\n\n  <ion-infinite-scroll (ionInfinite)="doloadmore($event)">\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\productlist\productlist.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */]])
     ], ProductlistPage);
@@ -1126,8 +1189,8 @@ var PcontentPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-pcontent',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\pcontent\pcontent.html"*/'<!--\n  Generated template for the PcontentPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-segment [(ngModel)]="tabs" color="danger">\n      <ion-segment-button value="plist">\n        <!-- <ion-icon name="camera"></ion-icon> -->\n        商品\n      </ion-segment-button>\n      <ion-segment-button value="pcontent">\n        <!-- <ion-icon name="bookmark"></ion-icon> -->\n        详情\n      </ion-segment-button>\n      <ion-segment-button value="comment">\n          <!-- <ion-icon name="bookmark"></ion-icon> -->\n          评论\n        </ion-segment-button>\n    </ion-segment>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="all-contnet">\n      <div [ngSwitch]="tabs">\n\n        <div class="tabs1" *ngSwitchCase="\'plist\'">  \n          <div class="tabs1-img">\n             <img [src]="config.apiUrl+item.pic" />   \n          </div>\n          <div class="tabs1-content">\n            <div class="tabs1-content-title">\n              <h2>{{item.title}}</h2>\n              <p>{{item.sub_title}}</p>\n            </div>\n            <div class="tabs1-content-money  mb10">\n              <span class="oldmoney">原价:<s>￥{{item.price}}</s></span>\n              <span class="nowmoney">特价:<span>￥{{item.old_price}}</span></span>\n            </div>\n\n            <div class="other mb10">\n              <div  #myattr  id="myattr">\n                <div *ngIf="item.attr">\n                    <div class="color" *ngFor="let attr of item.attr" >\n                      <strong>{{attr.cate}}:</strong>\n                      <span *ngFor="let cl of attr.list;let key=index;"  [ngClass]="{\'active\':key==0}">\n                        {{cl}}\n                      </span>\n                    \n                    </div>\n                </div>\n              </div>\n\n              <div class="number">\n                  <div class="cart-info">\n                    <div class="money">数量：</div>\n                    <div class="add">\n                      <div class="add-left" (click)="cutNum()">-</div>\n                      <div class="add-text">\n                        <input type="text" name="num" id="" placeholder="1" [(ngModel)]="num">\n                      </div>\n                      <div class="add-right" (click)="addNum()">+</div>\n                    </div>\n                  </div>\n              </div>\n\n            </div>\n          </div>\n        </div>\n\n        <div class="tabs2" *ngSwitchCase="\'pcontent\'">\n          <div [innerHTML]=\'item.content\'>\n\n          </div>\n        </div>\n        <div class="tabs3" *ngSwitchCase="\'comment\'">\n          评论\n        </div>\n\n      </div>\n  </div>\n</ion-content>\n\n\n<ion-footer>\n  <ion-toolbar >\n\n    <div class="footer_bar">\n      <div class="carticon" [navPush]="CartPage">            \n          <ion-icon name="cart"></ion-icon> \n          <!-- <p>购物车</p> -->\n          <ion-badge color="danger">{{carts_num}}</ion-badge>\n      </div>\n      \n      <div class="addcart" (click)="addCart()" >\n          加入购物车\n      </div>\n      <div class="buy">\n          立即购买\n      </div>\n    </div>\n\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\pcontent\pcontent.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_4__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_5__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]])
@@ -1184,7 +1247,7 @@ var PersonalPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-personal',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/'<!--\n  Generated template for the PersonalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>账户资料</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <ion-list inset class="personal">\n    <ion-item>\n         头像\n        <span class="item-note">\n            <img  src="../../assets/imgs/pc16.jpg" class="avatar"/>\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n\n      <ion-item>\n        \n        用户名\n        <span class="item-note">\n          张全蛋\n        </span>         \n        \n        <ion-icon name="ios-arrow-forward" item-end style="visibility:hidden"></ion-icon>\n      </ion-item>\n\n      <ion-item class="item-icon-right">\n          \n          昵称\n        <span class="item-note">\n          天王盖地虎\n        </span>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>            \n        <ion-label>性别</ion-label>\n        <ion-select>\n          <ion-option value="man" selected="true">男</ion-option>\n          <ion-option value="woman">女</ion-option>\n          <ion-option value="null">保密</ion-option>\n        </ion-select>\n\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>出生年月</ion-label>\n        <ion-select>\n          <ion-option value="01">1月</ion-option>\n          <ion-option value="02">2月</ion-option>\n          <ion-option value="03" selected="true">3月</ion-option>\n          <ion-option value="04">4月</ion-option>\n          <ion-option value="05">5月</ion-option>\n          <ion-option value="06">6月</ion-option>\n          <ion-option value="07">7月</ion-option>\n          <ion-option value="08">8月</ion-option>\n          <ion-option value="09">9月</ion-option>\n          <ion-option value="10">10月</ion-option>\n          <ion-option value="11">11月</ion-option>\n          <ion-option value="12">12月</ion-option>\n        </ion-select>\n        \n        <ion-select>\n          <ion-option>2019年</ion-option>\n          <ion-option>2018年</ion-option>\n          <ion-option>2017年</ion-option>\n          <ion-option>2016年</ion-option>\n          <ion-option>2015年</ion-option>\n          <ion-option selected="true">2014年</ion-option>\n          <ion-option>2013年</ion-option>\n          <ion-option>2012年</ion-option>\n          <ion-option>2011年</ion-option>\n          <ion-option>2010年</ion-option>\n          <ion-option>2009年</ion-option>\n        </ion-select>\n        \n          <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n      </ion-item>\n</ion-list>\n\n<button ion-button block color="danger" class="exit_btn" (tap)="loginOut()">退出登录</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\personal\personal.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_storage_storage__["a" /* StorageProvider */]])
     ], PersonalPage);
     return PersonalPage;
 }());
@@ -1194,51 +1257,6 @@ var PersonalPage = /** @class */ (function () {
 /***/ }),
 
 /***/ 118:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register2Page; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var Register2Page = /** @class */ (function () {
-    function Register2Page(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    Register2Page.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegisterPage');
-    };
-    Register2Page = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register2',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register2\register2.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>注册界面</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <body class="no-padding reader-black-font" lang="zh-CN">\n    <div class="sign">\n      <div class="logo"><a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png"\n            alt="Logo"></a></div>\n      <div class="main">\n\n\n\n        <h4 class="title">\n          <div class="normal-title">\n            <a class="" href="/sign_in">登录</a>\n            <b>·</b>\n            <a id="js-sign-up-btn" class="active" href="/sign_up">注册</a>\n          </div>\n        </h4>\n        <div class="js-sign-up-container">\n          <form class="new_user" id="new_user" action="/users/register" accept-charset="UTF-8" method="post"><input\n              name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="1ClWj94TToX5o/orEHlRGhliyXHoFv0Km7lPncTFL8QJ/xUJt8PxICyZoAAmmu2iFrrELZHbJsJOxo4lOaVzXA==">\n            <div class="input-prepend restyle">\n              <input placeholder="你的昵称" type="text" value="" name="user[nickname]" id="user_nickname">\n              <i class="iconfont ic-user"></i>\n            </div>\n            <div class="input-prepend restyle no-radius js-normal">\n              <input type="hidden" value="CN" name="user[mobile_number_country_code]" id="user_mobile_number_country_code">\n              <input placeholder="手机号" type="tel" name="user[mobile_number]" id="user_mobile_number">\n              <i class="iconfont ic-phonenumber"></i>\n            </div>\n            <input type="hidden" name="oversea" id="oversea" value="false">\n            <input type="hidden" name="force_user_nonexist" id="force_user_nonexist" value="true">\n            <div class="input-prepend restyle no-radius security-up-code js-security-number hide">\n              <input type="text" name="sms_code" id="sms_code" placeholder="手机验证码">\n              <i class="iconfont ic-verify"></i>\n              <a tabindex="-1" class="btn-up-resend js-send-code-button disable" href="javascript:void(0);" id="send_code">发送验证码</a>\n              <div>\n                <div class="captcha"><input name="captcha[validation][challenge]" autocomplete="off" type="hidden"\n                    value="3b326436b36e6a767ef8fd9c95d29d3f"> <input name="captcha[validation][gt]" autocomplete="off"\n                    type="hidden" value="ec47641997d5292180681a247db3c92e"> <input name="captcha[validation][validate]"\n                    autocomplete="off" type="hidden" value=""> <input name="captcha[validation][seccode]" autocomplete="off"\n                    type="hidden" value=""> <input name="captcha[id]" autocomplete="off" type="hidden" value="">\n                  <div id="geetest-area" class="geetest"></div>\n                </div>\n              </div>\n            </div>\n            <input type="hidden" name="security_number" id="security_number">\n            <div class="input-prepend">\n              <input placeholder="设置密码" type="password" name="user[password]" id="user_password">\n              <i class="iconfont ic-password"></i>\n            </div>\n            <input type="submit" name="commit" value="注册" class="sign-up-button" id="sign_up_btn" data-disable-with="注册">\n            <p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br> <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a>\n              和 <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>\n          </form>\n          <!-- 更多注册方式 -->\n          <div class="more-sign">\n            <h6>社交帐号直接注册</h6>\n            <ul>\n              <li><a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a></li>\n              <li><a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a></li>\n            </ul>\n\n          </div>\n        </div>\n\n      </div>\n    </div>\n\n    <!-- Javascripts\n        ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    <script type="application/json" data-name="page-data">\n      {\n        "user_signed_in": false,\n        "locale": "zh-CN",\n        "os": "windows",\n        "read_mode": "day",\n        "read_font": "font2"\n      }\n\n    </script>\n\n    <script src="//cdn2.jianshu.io/assets/web-base-059fad59acbd6e000110.js" crossorigin="anonymous"></script>\n    <script src="//cdn2.jianshu.io/assets/web-a844dd0ee5f24ad4d2bc.js" crossorigin="anonymous"></script>\n    <script src="//cdn2.jianshu.io/assets/web/pages/common/signup/entry-5d55473c92d21e013cde.js" crossorigin="anonymous"></script>\n    <script>\n      (function () {\n        var bp = document.createElement(\'script\');\n        var curProtocol = window.location.protocol.split(\':\')[0];\n        if (curProtocol === \'https\') {\n          bp.src = \'https://zz.bdstatic.com/linksubmit/push.js\';\n        } else {\n          bp.src = \'http://push.zhanzhang.baidu.com/push.js\';\n        }\n        var s = document.getElementsByTagName("script")[0];\n        s.parentNode.insertBefore(bp, s);\n      })();\n\n    </script>\n\n\n\n    <div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;">\n      <div id="trans-tooltip">\n        <div id="tip-left-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-top.png&quot;);"></div>\n        <div id="tip-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-top.png&quot;) repeat-x;"></div>\n        <div id="tip-right-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-top.png&quot;);"></div>\n        <div id="tip-right" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right.png&quot;) repeat-y;"></div>\n        <div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-bottom.png&quot;);"></div>\n        <div id="tip-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-bottom.png&quot;) repeat-x;"></div>\n        <div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-bottom.png&quot;);"></div>\n        <div id="tip-left" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left.png&quot;);"></div>\n        <div id="trans-content"></div>\n      </div>\n      <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-bottom.png&quot;);"></div>\n      <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-top.png&quot;);"></div>\n    </div>\n    <div class="geetest_panel geetest_wind" style="display: none;">\n      <div class="geetest_panel_ghost"></div>\n      <div class="geetest_panel_box">\n        <div class="geetest_other_offline geetest_panel_offline"></div>\n        <div class="geetest_panel_loading">\n          <div class="geetest_panel_loading_icon"></div>\n          <div class="geetest_panel_loading_content">智能验证检测中</div>\n        </div>\n        <div class="geetest_panel_success">\n          <div class="geetest_panel_success_box">\n            <div class="geetest_panel_success_show">\n              <div class="geetest_panel_success_pie"></div>\n              <div class="geetest_panel_success_filter"></div>\n              <div class="geetest_panel_success_mask"></div>\n            </div>\n            <div class="geetest_panel_success_correct">\n              <div class="geetest_panel_success_icon"></div>\n            </div>\n          </div>\n          <div class="geetest_panel_success_title">通过验证</div>\n        </div>\n        <div class="geetest_panel_error">\n          <div class="geetest_panel_error_icon"></div>\n          <div class="geetest_panel_error_title">网络超时</div>\n          <div class="geetest_panel_error_content">请点击此处重试</div>\n          <div class="geetest_panel_error_code"></div>\n        </div>\n        <div class="geetest_panel_footer" style="display: none;">\n          <div class="geetest_panel_footer_logo"></div>\n          <div class="geetest_panel_footer_copyright">由极验提供技术支持</div>\n        </div>\n        <div class="geetest_panel_next"></div>\n      </div>\n    </div>\n  </body>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register2\register2.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], Register2Page);
-    return Register2Page;
-}());
-
-//# sourceMappingURL=register2.js.map
-
-/***/ }),
-
-/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1389,8 +1407,8 @@ var SearchPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-search',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\search\search.html"*/'<!--\n  Generated template for the SearchPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-searchbar [(ngModel)]="keywords"></ion-searchbar>\n    <ion-buttons end>\n        <button  ion-button icon-only (tap)="getSearchList()">\n          <!-- <ion-icon name="search"></ion-icon> -->\n          搜索\n        </button>\n      </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="search-content" *ngIf="!flag" >\n    <!-- 热搜 -->\n  <div class="hotsearch">\n    <h3 class="search-title">热搜</h3>\n    <p>\n      <span>手机</span>\n      <span>电脑</span>\n      <span>服饰</span>\n      <span>生活</span>\n      <span>零食</span>\n    </p>\n  </div>\n<!-- 历史搜索 -->\n  <div class="history" *ngIf="historyList.length>0" >\n    <h3 class="search-title">历史搜索</h3>\n    <ion-list>\n      <ion-item *ngFor="let item of historyList" (press)="removeHistroy(item)" (tap)="goSearch(item)" >{{item}}</ion-item>\n    </ion-list>\n  </div>\n  </div>\n  <div class="list-content" *ngIf="flag" >\n\n    <div class="sub-header">\n      <div>综合</div>\n      <div>销量</div>\n      <div>价格</div>\n    </div>  \n\n\n    <ion-list inset>\n      <ion-item *ngFor="let item of list" >\n        <ion-thumbnail item-left>\n           <img [src]="config.apiUrl+item.s_pic"  />            \n        </ion-thumbnail>\n        <h2> {{item.title}}</h2>\n        <p>价格:<span class="price">{{item.price}}</span>元</p>           \n      </ion-item>\n     </ion-list>\n\n     <ion-infinite-scroll (ionInfinite)="doLoadMore($event)" *ngIf="hasData" >\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n  </div>\n\n \n  \n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\search\search.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_2__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__["a" /* StorageProvider */],
@@ -1400,6 +1418,83 @@ var SearchPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=search.js.map
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__personal_personal__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the UserPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var UserPage = /** @class */ (function () {
+    function UserPage(navCtrl, navParams, storage, httpservices) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.storage = storage;
+        this.httpservices = httpservices;
+        this.LoginPage = __WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */];
+        this.Register2Page = __WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */];
+        this.RegisterPage = __WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */];
+        this.PersonalPage = __WEBPACK_IMPORTED_MODULE_5__personal_personal__["a" /* PersonalPage */];
+        // public isLogin=false;
+        this.userinfo = '';
+    }
+    UserPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UserPage');
+    };
+    UserPage.prototype.ionViewWillEnter = function () {
+        var userinfo = this.storage.get("userinfo");
+        if (userinfo && userinfo.username) {
+            this.userinfo = userinfo;
+        }
+        else {
+            this.userinfo = '';
+        }
+    };
+    UserPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-user',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>用户</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="login" *ngIf="!userinfo" >\n    <div class="usering">\n        <img src="../../assets/imgs/pc5.jpg" />\n    </div>\n\n    <div class="login-btn">\n      <button ion-button [navPush]=\'LoginPage\'>登陆</button>\n      <button ion-button [navPush]=\'RegisterPage\'>注册</button>\n    </div>\n\n  </div>\n\n  <ion-list *ngIf="userinfo" >\n    <ion-item [navPush]="PersonalPage">\n        <ion-avatar item-start>\n          <img src="../../assets/imgs/pc19.jpg">\n        </ion-avatar>\n        <h2>用户名:{{userinfo.username}}</h2>\n        <p>璀璨钻石</p>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n  </ion-list>\n\n\n  <ion-list inset >\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="ios-paper-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待付款</span>\n          <ion-icon name="ios-card-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待发货</span>\n          <ion-icon name="jet" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待收货</span>\n          <ion-icon name="basket" item-end></ion-icon>\n      </ion-item>\n\n\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="heart" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="contacts" item-end></ion-icon>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__["a" /* StorageProvider */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
+    ], UserPage);
+    return UserPage;
+}());
+
+//# sourceMappingURL=user.js.map
 
 /***/ }),
 
@@ -1482,15 +1577,9 @@ var HttpServicesProvider = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register2Page; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register2_register2__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__personal_personal__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1502,56 +1591,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
-
 /**
- * Generated class for the UserPage page.
+ * Generated class for the RegisterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var UserPage = /** @class */ (function () {
-    function UserPage(navCtrl, navParams, storage, httpservices) {
+var Register2Page = /** @class */ (function () {
+    function Register2Page(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.storage = storage;
-        this.httpservices = httpservices;
-        this.LoginPage = __WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */];
-        this.Register2Page = __WEBPACK_IMPORTED_MODULE_3__register2_register2__["a" /* Register2Page */];
-        this.RegisterPage = __WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */];
-        this.PersonalPage = __WEBPACK_IMPORTED_MODULE_5__personal_personal__["a" /* PersonalPage */];
-        // public isLogin=false;
-        this.userinfo = '';
     }
-    UserPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UserPage');
+    Register2Page.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RegisterPage');
     };
-    UserPage.prototype.ionViewWillEnter = function () {
-        var userinfo = this.storage.get("userinfo");
-        if (userinfo && userinfo.username) {
-            this.userinfo = userinfo;
-        }
-        else {
-            this.userinfo = '';
-        }
-    };
-    UserPage = __decorate([
+    Register2Page = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>用户</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="login" *ngIf="!userinfo" >\n    <div class="usering">\n        <img src="../../assets/imgs/pc5.jpg" />\n    </div>\n\n    <div class="login-btn">\n      <button ion-button [navPush]=\'LoginPage\'>登陆</button>\n      <button ion-button [navPush]=\'RegisterPage\'>注册</button>\n    </div>\n\n  </div>\n\n  <ion-list *ngIf="userinfo" >\n    <ion-item [navPush]="PersonalPage">\n        <ion-avatar item-start>\n          <img src="../../assets/imgs/pc19.jpg">\n        </ion-avatar>\n        <h2>用户名:{{userinfo.username}}</h2>\n        <p>璀璨钻石</p>\n        <ion-icon name="ios-arrow-forward" item-end></ion-icon>\n    </ion-item>\n  </ion-list>\n\n\n  <ion-list inset >\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="ios-paper-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待付款</span>\n          <ion-icon name="ios-card-outline" item-end></ion-icon>\n      </ion-item>\n\n      \n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待发货</span>\n          <ion-icon name="jet" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>待收货</span>\n          <ion-icon name="basket" item-end></ion-icon>\n      </ion-item>\n\n\n      <ion-item-divider></ion-item-divider>\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="heart" item-end></ion-icon>\n      </ion-item>\n\n      <ion-item color="light">\n          <ion-icon name="list" item-start></ion-icon>\n            <span>我的订单</span>\n          <ion-icon name="contacts" item-end></ion-icon>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\user\user.html"*/,
+            selector: 'page-register2',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register2\register2.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>注册界面</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <body class="no-padding reader-black-font" lang="zh-CN">\n    <div class="sign">\n      <div class="logo"><a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png"\n            alt="Logo"></a></div>\n      <div class="main">\n\n\n\n        <h4 class="title">\n          <div class="normal-title">\n            <a class="" href="/sign_in">登录</a>\n            <b>·</b>\n            <a id="js-sign-up-btn" class="active" href="/sign_up">注册</a>\n          </div>\n        </h4>\n        <div class="js-sign-up-container">\n          <form class="new_user" id="new_user" action="/users/register" accept-charset="UTF-8" method="post"><input\n              name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="1ClWj94TToX5o/orEHlRGhliyXHoFv0Km7lPncTFL8QJ/xUJt8PxICyZoAAmmu2iFrrELZHbJsJOxo4lOaVzXA==">\n            <div class="input-prepend restyle">\n              <input placeholder="你的昵称" type="text" value="" name="user[nickname]" id="user_nickname">\n              <i class="iconfont ic-user"></i>\n            </div>\n            <div class="input-prepend restyle no-radius js-normal">\n              <input type="hidden" value="CN" name="user[mobile_number_country_code]" id="user_mobile_number_country_code">\n              <input placeholder="手机号" type="tel" name="user[mobile_number]" id="user_mobile_number">\n              <i class="iconfont ic-phonenumber"></i>\n            </div>\n            <input type="hidden" name="oversea" id="oversea" value="false">\n            <input type="hidden" name="force_user_nonexist" id="force_user_nonexist" value="true">\n            <div class="input-prepend restyle no-radius security-up-code js-security-number hide">\n              <input type="text" name="sms_code" id="sms_code" placeholder="手机验证码">\n              <i class="iconfont ic-verify"></i>\n              <a tabindex="-1" class="btn-up-resend js-send-code-button disable" href="javascript:void(0);" id="send_code">发送验证码</a>\n              <div>\n                <div class="captcha"><input name="captcha[validation][challenge]" autocomplete="off" type="hidden"\n                    value="3b326436b36e6a767ef8fd9c95d29d3f"> <input name="captcha[validation][gt]" autocomplete="off"\n                    type="hidden" value="ec47641997d5292180681a247db3c92e"> <input name="captcha[validation][validate]"\n                    autocomplete="off" type="hidden" value=""> <input name="captcha[validation][seccode]" autocomplete="off"\n                    type="hidden" value=""> <input name="captcha[id]" autocomplete="off" type="hidden" value="">\n                  <div id="geetest-area" class="geetest"></div>\n                </div>\n              </div>\n            </div>\n            <input type="hidden" name="security_number" id="security_number">\n            <div class="input-prepend">\n              <input placeholder="设置密码" type="password" name="user[password]" id="user_password">\n              <i class="iconfont ic-password"></i>\n            </div>\n            <input type="submit" name="commit" value="注册" class="sign-up-button" id="sign_up_btn" data-disable-with="注册">\n            <p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br> <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a>\n              和 <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>\n          </form>\n          <!-- 更多注册方式 -->\n          <div class="more-sign">\n            <h6>社交帐号直接注册</h6>\n            <ul>\n              <li><a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a></li>\n              <li><a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a></li>\n            </ul>\n\n          </div>\n        </div>\n\n      </div>\n    </div>\n\n    <!-- Javascripts\n        ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    <script type="application/json" data-name="page-data">\n      {\n        "user_signed_in": false,\n        "locale": "zh-CN",\n        "os": "windows",\n        "read_mode": "day",\n        "read_font": "font2"\n      }\n\n    </script>\n\n    <script src="//cdn2.jianshu.io/assets/web-base-059fad59acbd6e000110.js" crossorigin="anonymous"></script>\n    <script src="//cdn2.jianshu.io/assets/web-a844dd0ee5f24ad4d2bc.js" crossorigin="anonymous"></script>\n    <script src="//cdn2.jianshu.io/assets/web/pages/common/signup/entry-5d55473c92d21e013cde.js" crossorigin="anonymous"></script>\n    <script>\n      (function () {\n        var bp = document.createElement(\'script\');\n        var curProtocol = window.location.protocol.split(\':\')[0];\n        if (curProtocol === \'https\') {\n          bp.src = \'https://zz.bdstatic.com/linksubmit/push.js\';\n        } else {\n          bp.src = \'http://push.zhanzhang.baidu.com/push.js\';\n        }\n        var s = document.getElementsByTagName("script")[0];\n        s.parentNode.insertBefore(bp, s);\n      })();\n\n    </script>\n\n\n\n    <div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;">\n      <div id="trans-tooltip">\n        <div id="tip-left-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-top.png&quot;);"></div>\n        <div id="tip-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-top.png&quot;) repeat-x;"></div>\n        <div id="tip-right-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-top.png&quot;);"></div>\n        <div id="tip-right" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right.png&quot;) repeat-y;"></div>\n        <div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-right-bottom.png&quot;);"></div>\n        <div id="tip-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-bottom.png&quot;) repeat-x;"></div>\n        <div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left-bottom.png&quot;);"></div>\n        <div id="tip-left" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-left.png&quot;);"></div>\n        <div id="trans-content"></div>\n      </div>\n      <div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-bottom.png&quot;);"></div>\n      <div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ccfjcepmiaackkccabgeeegeklgifffd/imgs/map/tip-arrow-top.png&quot;);"></div>\n    </div>\n    <div class="geetest_panel geetest_wind" style="display: none;">\n      <div class="geetest_panel_ghost"></div>\n      <div class="geetest_panel_box">\n        <div class="geetest_other_offline geetest_panel_offline"></div>\n        <div class="geetest_panel_loading">\n          <div class="geetest_panel_loading_icon"></div>\n          <div class="geetest_panel_loading_content">智能验证检测中</div>\n        </div>\n        <div class="geetest_panel_success">\n          <div class="geetest_panel_success_box">\n            <div class="geetest_panel_success_show">\n              <div class="geetest_panel_success_pie"></div>\n              <div class="geetest_panel_success_filter"></div>\n              <div class="geetest_panel_success_mask"></div>\n            </div>\n            <div class="geetest_panel_success_correct">\n              <div class="geetest_panel_success_icon"></div>\n            </div>\n          </div>\n          <div class="geetest_panel_success_title">通过验证</div>\n        </div>\n        <div class="geetest_panel_error">\n          <div class="geetest_panel_error_icon"></div>\n          <div class="geetest_panel_error_title">网络超时</div>\n          <div class="geetest_panel_error_content">请点击此处重试</div>\n          <div class="geetest_panel_error_code"></div>\n        </div>\n        <div class="geetest_panel_footer" style="display: none;">\n          <div class="geetest_panel_footer_logo"></div>\n          <div class="geetest_panel_footer_copyright">由极验提供技术支持</div>\n        </div>\n        <div class="geetest_panel_next"></div>\n      </div>\n    </div>\n  </body>\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register2\register2.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_7__providers_storage_storage__["a" /* StorageProvider */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
-    ], UserPage);
-    return UserPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], Register2Page);
+    return Register2Page;
 }());
 
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=register2.js.map
 
 /***/ }),
 
@@ -1670,71 +1733,75 @@ var ConfigProvider = /** @class */ (function () {
 var map = {
 	"../pages/addaddress/addaddress.module": [
 		292,
-		16
+		36
 	],
 	"../pages/address/address.module": [
 		293,
-		15
+		35
 	],
 	"../pages/cart/cart.module": [
 		294,
-		14
+		34
 	],
 	"../pages/category/category.module": [
 		295,
-		13
+		33
 	],
 	"../pages/ceshi/ceshi.module": [
 		296,
-		12
+		32
 	],
 	"../pages/editaddress/editaddress.module": [
 		297,
-		11
+		31
 	],
 	"../pages/login/login.module": [
 		298,
-		10
+		30
 	],
 	"../pages/orders/orders.module": [
 		299,
-		9
+		29
+	],
+	"../pages/payment/payment.module": [
+		310,
+		28
 	],
 	"../pages/pcontent/pcontent.module": [
 		300,
-		8
+		27
 	],
 	"../pages/personal/personal.module": [
 		301,
-		7
+		26
 	],
 	"../pages/productlist/productlist.module": [
 		302,
-		6
+		25
 	],
 	"../pages/register/register.module": [
 		303,
-		4
+		23
 	],
 	"../pages/register2/register2.module": [
-		304,
-		5
+		308,
+		24
 	],
 	"../pages/registerpassword/registerpassword.module": [
-		305,
-		3
+		304,
+		22
 	],
 	"../pages/registersign/registersign.module": [
-		306,
-		2
+		305,
+		21
 	],
 	"../pages/search/search.module": [
-		307,
-		1
+		306,
+		20
 	],
 	"../pages/user/user.module": [
-		308,
-		0
+		307,
+		19
 	]
 };
 function webpackAsyncContext(req) {
@@ -1762,7 +1829,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cart_cart__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__category_category__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_user__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1804,7 +1871,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_search__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_search__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_pcontent_pcontent__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_config_config__ = __webpack_require__(15);
@@ -1899,7 +1966,7 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\home\home.html"*/'<ion-header>\n  <!-- <ion-navbar>\n    <ion-title>主页</ion-title>\n  </ion-navbar> -->\n  <ion-toolbar color="light">\n      <ion-searchbar (tap)="goSearch()" ></ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n<!-- 下拉刷新 -->\n    <ion-refresher (ionRefresh)="doRefresh($event)">\n        <ion-refresher-content\n          pullingIcon="arrow-dropdown"\n          pullingText="松开刷新"\n          refreshingSpinner="circles"\n          refreshingText="刷新中..">\n        </ion-refresher-content>\n      </ion-refresher>\n\n  <ion-slides pager="true" loop="true" autoplay="2000" *ngIf="focusList.length>0">\n\n    <ion-slide *ngFor="let item of focusList" >\n      <img [src]="Config.apiUrl+item.pic" alt="">\n    </ion-slide>\n\n  </ion-slides>\n\n  <div class="home-title">精品推荐</div>\n\n  <div class="slide_product">\n      <ion-scroll scrollX="true" >\n<!-- 外层的ion-scroll是100% 里面元素的宽度要大于100% -->\n          <ul class="clearfix" [ngStyle]="{\'width\': bestListWidth}">\n              <li *ngFor="let item of bestList" [navPush]="PcontentPage" [navParams]="{\'id\':item[\'_id\']}">\n        \n                <img [src]="Config.apiUrl+item.s_pic" alt="">\n                <p>{{item.title}}</p>\n                <p>价格:88元</p>\n                 \n              </li>\n            </ul>\n\n        </ion-scroll>\n    \n  </div>\n\n  <div class="home-title">猜你喜欢</div>\n  <div class="index_product">\n    <ion-row>\n      <ion-col col-6 *ngFor="let item of hotList" [navPush]="PcontentPage" [navParams]="{\'id\':item[\'_id\']}">    <!--  col总的为12   col-6即分为两份  col-4分为三份 以此类推 -->\n        <img [src]="Config.apiUrl+item.s_pic" alt="">\n          <p>{{item.title}}</p>\n      </ion-col>\n    </ion-row>\n  </div>\n  \n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_5__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_6__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */],
@@ -1940,9 +2007,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_cart_cart__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_category_category__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_user_user__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_user_user__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_register2_register2__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_register2_register2__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_register_register__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_registerpassword_registerpassword__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_registersign_registersign__ = __webpack_require__(111);
@@ -1952,15 +2019,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_address_address__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_addaddress_addaddress__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_editaddress_editaddress__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ceshi_ceshi__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_search_search__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_pcontent_pcontent__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_status_bar__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_splash_screen__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_config_config__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_http_services_http_services__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_storage_storage__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_tools_tools__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_payment_payment__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ceshi_ceshi__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_search_search__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_pcontent_pcontent__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_status_bar__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_splash_screen__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_config_config__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_http_services_http_services__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_storage_storage__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_tools_tools__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1981,6 +2049,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // 登录
 
 // 注册
+
 
 
 
@@ -2020,15 +2089,16 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_register_register__["a" /* RegisterPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_registerpassword_registerpassword__["a" /* RegisterpasswordPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_registersign_registersign__["a" /* RegistersignPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_search_search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_search_search__["a" /* SearchPage */],
                 __WEBPACK_IMPORTED_MODULE_15__pages_productlist_productlist__["a" /* ProductlistPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_pcontent_pcontent__["a" /* PcontentPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_ceshi_ceshi__["a" /* CeshiPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_pcontent_pcontent__["a" /* PcontentPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_ceshi_ceshi__["a" /* CeshiPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_personal_personal__["a" /* PersonalPage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_orders_orders__["a" /* OrdersPage */],
                 __WEBPACK_IMPORTED_MODULE_19__pages_addaddress_addaddress__["a" /* AddaddressPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_address_address__["a" /* AddressPage */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_editaddress_editaddress__["a" /* EditaddressPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_payment_payment__["a" /* PaymentPage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
@@ -2051,11 +2121,12 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/personal/personal.module#PersonalPageModule', name: 'PersonalPage', segment: 'personal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/productlist/productlist.module#ProductlistPageModule', name: 'ProductlistPage', segment: 'productlist', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/register2/register2.module#Register2PageModule', name: 'Register2Page', segment: 'register2', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/registerpassword/registerpassword.module#RegisterpasswordPageModule', name: 'RegisterpasswordPage', segment: 'registerpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/registersign/registersign.module#RegistersignPageModule', name: 'RegistersignPage', segment: 'registersign', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/register2/register2.module#Register2PageModule', name: 'Register2Page', segment: 'register2', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/payment/payment.module#PaymentPageModule', name: 'PaymentPage', segment: 'payment', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -2072,24 +2143,25 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_register_register__["a" /* RegisterPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_registerpassword_registerpassword__["a" /* RegisterpasswordPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_registersign_registersign__["a" /* RegistersignPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_search_search__["a" /* SearchPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_search_search__["a" /* SearchPage */],
                 __WEBPACK_IMPORTED_MODULE_15__pages_productlist_productlist__["a" /* ProductlistPage */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_pcontent_pcontent__["a" /* PcontentPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_ceshi_ceshi__["a" /* CeshiPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_pcontent_pcontent__["a" /* PcontentPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_ceshi_ceshi__["a" /* CeshiPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_personal_personal__["a" /* PersonalPage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_orders_orders__["a" /* OrdersPage */],
                 __WEBPACK_IMPORTED_MODULE_19__pages_addaddress_addaddress__["a" /* AddaddressPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_address_address__["a" /* AddressPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_editaddress_editaddress__["a" /* EditaddressPage */]
+                __WEBPACK_IMPORTED_MODULE_20__pages_editaddress_editaddress__["a" /* EditaddressPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_payment_payment__["a" /* PaymentPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_24__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_25__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_25__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_26__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_26__providers_config_config__["a" /* ConfigProvider */],
-                __WEBPACK_IMPORTED_MODULE_27__providers_http_services_http_services__["a" /* HttpServicesProvider */],
-                __WEBPACK_IMPORTED_MODULE_28__providers_storage_storage__["a" /* StorageProvider */],
-                __WEBPACK_IMPORTED_MODULE_29__providers_tools_tools__["a" /* ToolsProvider */]
+                __WEBPACK_IMPORTED_MODULE_27__providers_config_config__["a" /* ConfigProvider */],
+                __WEBPACK_IMPORTED_MODULE_28__providers_http_services_http_services__["a" /* HttpServicesProvider */],
+                __WEBPACK_IMPORTED_MODULE_29__providers_storage_storage__["a" /* StorageProvider */],
+                __WEBPACK_IMPORTED_MODULE_30__providers_tools_tools__["a" /* ToolsProvider */]
             ]
         })
     ], AppModule);
@@ -2137,12 +2209,58 @@ var MyApp = /** @class */ (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
     return MyApp;
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 309:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the PaymentPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PaymentPage = /** @class */ (function () {
+    function PaymentPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    PaymentPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PaymentPage');
+    };
+    PaymentPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-payment',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\payment\payment.html"*/'<!--\n  Generated template for the PaymentPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>支付页面</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list radio-group>\n    <ion-list-header>\n      选择支付方式\n    </ion-list-header>\n  \n    <ion-item>\n      <ion-avatar item-left>\n        <img src="../../assets/imgs/zfb.png">\n      </ion-avatar>\n      <ion-label>支付宝</ion-label>\n      <ion-icon end name="albums"></ion-icon>\n      <ion-radio checked="true" value="zhifubao"></ion-radio>\n    </ion-item>\n  \n    <ion-item>\n        <ion-avatar item-left>\n            <img src="../../assets/imgs/wx.png">\n          </ion-avatar>\n      <ion-label>微信</ion-label>\n      <ion-radio value="weixin"></ion-radio>\n    </ion-item>\n  \n    <ion-item>\n        <ion-avatar item-left>\n            <img src="../../assets/imgs/yzf.png">\n          </ion-avatar>\n      <ion-label>翼支付</ion-label>\n      <ion-radio value="yizhifu"></ion-radio>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n\n\n<ion-footer>\n    <ion-toolbar>\n      <div class="order_footer">\n  \n        <!-- <span>实付款: ¥{{allPrice}}</span> -->\n       \n        <div class="buy_order">\n            立即下单\n        </div>\n      </div>\n    </ion-toolbar>\n  </ion-footer>'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\payment\payment.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], PaymentPage);
+    return PaymentPage;
+}());
+
+//# sourceMappingURL=payment.js.map
 
 /***/ }),
 
@@ -2395,11 +2513,11 @@ var CartPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-cart',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\cart\cart.html"*/'<!--\n  Generated template for the CartPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>我的购物车</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only  (tap)="isEdit=!isEdit" >\n        <ion-icon name="create" *ngIf="isEdit" ></ion-icon>\n        <ion-icon name="checkmark-circle" *ngIf="!isEdit" ></ion-icon>\n      </button> \n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <div class="cart_spinner" *ngIf="list.length==0 && hasData" >\n      <ion-spinner></ion-spinner>\n    </div>\n    <p class="no_text" *ngIf="!hasData" >购物车没有添加商品!</p>\n\n  <dl class="cart-list" *ngFor="let item of list" >\n    <dt>\n      <ion-checkbox [(ngModel)]="item.checked"  (ionChange)="changeCarts()"></ion-checkbox>\n      <img [src]="config.apiUrl+item.product_pic" />\n    </dt>\n    <dd>\n      <h2 class="cart-title">{{item.product_title}}</h2>\n      <div class="cart-info">\n        <div class="money">{{item.product_price}}</div>\n        <div class="add">\n          <div class="add-left" (tap)="cutCount(item)" >-</div>\n          <div class="add-text">\n            <input type="text"  readonly="readonly" name="num" id="num" [(ngModel)]="item.product_count">\n          </div>\n          <div class="add-right" (tap)="addCount(item)" >+</div>\n        </div>\n      </div>\n    </dd> \n  </dl>\n\n</ion-content>\n\n<ion-footer *ngIf="hasData" >\n  <ion-toolbar *ngIf="!isEdit" >\n    <div (tap)="changeAll()">\n        <ion-checkbox disabled="true"  [(ngModel)]="ischecked" ></ion-checkbox>全选\n        <strong>合计：{{allPrice}}元</strong>\n    </div>\n    <ion-buttons end> \n      <div color="danger" (tap)="doPay()" class="doPay">结算</div>\n    </ion-buttons>\n  </ion-toolbar>\n\n    <ion-toolbar *ngIf="isEdit">\n      <div (tap)="changeAll()">\n          <ion-checkbox disabled="true"  [(ngModel)]="ischecked" ></ion-checkbox>全选\n          <strong>是否删除</strong>\n      </div>\n      <ion-buttons end> \n        <div  color="danger" (tap)="doDel()" class="doDel">删除</div>\n      </ion-buttons>\n    </ion-toolbar>\n  \n  </ion-footer>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\cart\cart.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_config_config__["a" /* ConfigProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__["a" /* StorageProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], CartPage);
     return CartPage;
 }());
@@ -2489,8 +2607,8 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-login',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\login\login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>登录</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n    <ion-item>\n        <ion-label>\n        <ion-icon name="person" start color="primary"></ion-icon>\n        </ion-label>\n        <ion-input type="string" placeholder="用户名/手机号/邮箱" [(ngModel)]="userinfo.username"></ion-input>\n     </ion-item>\n    <ion-item>\n        <ion-label>\n        <ion-icon name="lock" start color="primary"></ion-icon>\n        </ion-label>\n        <ion-input type="password" placeholder="密码" [(ngModel)]="userinfo.password"></ion-input>\n     </ion-item>\n     \n     <ion-item no-lines class="list-end">\n        <span item-start [navPush]="RegisterPage">手机快速注册</span>\n        <span item-end class="forgrt">忘记密码?</span>\n     </ion-item>\n\n     <button ion-button  block class="login-btn1" (click)="doLogin()" >登录</button>\n<!-- <div class="wrap">\n\n     <div class="remember-btn">\n      <input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>\n    </div>\n\n    <div class="forget-btn">\n      <a class="" data-toggle="dropdown" href="">登录遇到问题?</a>\n      \n    </div>\n    \n  </div>\n\n  <button ion-button round block>登录</button>\n\n  <div class="other-login">\n      <h6>社交帐号直接注册/登录</h6>\n      <ul>\n    <li><a id="weixin" class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a></li>\n    <li><a id="qq" class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a></li>\n  </ul>\n  \n    </div> -->\n\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\login\login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__["a" /* StorageProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__["a" /* HttpServicesProvider */]])
     ], LoginPage);
@@ -2570,8 +2688,8 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-register',template:/*ion-inline-start:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register\register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>register</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n<div class="register-page">\n  <input type="text" placeholder="请输入手机号" [(ngModel)]="tel" maxlength="11">\n</div>\n<button ion-button class="next-btn" (tap)="goRegistersignPage()" >下一步</button>\n\n\n<!-- <button ion-button [navPush]="CeshiPage">测试注册模板页面</button> -->\n\n<!-- <ion-item>\n  <ion-label >前面</ion-label>\n  <ion-input type="text"  placeholder="测试一下咯" clearInput></ion-input>\n</ion-item> -->\n</ion-content>\n'/*ion-inline-end:"D:\ionicDEMO\jingdongdemoAPP\src\pages\register\register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_http_services_http_services__["a" /* HttpServicesProvider */],
             __WEBPACK_IMPORTED_MODULE_4__providers_storage_storage__["a" /* StorageProvider */]])
     ], RegisterPage);

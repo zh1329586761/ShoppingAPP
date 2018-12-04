@@ -24,6 +24,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { AddressPage } from '../pages/address/address';
 import { AddaddressPage } from '../pages/addaddress/addaddress';
 import { EditaddressPage } from '../pages/editaddress/editaddress';
+import { PaymentPage } from '../pages/payment/payment';
 // ceshi
 import { CeshiPage } from '../pages/ceshi/ceshi';
 
@@ -63,6 +64,7 @@ import { ToolsProvider } from '../providers/tools/tools';
     AddaddressPage,
     AddressPage,
     EditaddressPage,
+    PaymentPage,
 
   ],
   imports: [
@@ -95,7 +97,8 @@ import { ToolsProvider } from '../providers/tools/tools';
     OrdersPage,
     AddaddressPage,
     AddressPage,
-    EditaddressPage
+    EditaddressPage,
+    PaymentPage
   ],
   providers: [
     StatusBar,

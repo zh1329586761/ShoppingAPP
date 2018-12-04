@@ -26113,6 +26113,22 @@ page-orders .submit_info .order_price span {
   margin-top: 0rem;
 }
 
+page-payment button {
+  border-bottom: 0.55px solid #c8c7cc;
+}
+
+page-payment .order_footer .buy_order {
+  width: 15rem;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  text-align: center;
+  color: #fff;
+  background: red;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
 page-pcontent .mb10 {
   margin-bottom: 20px;
 }
