@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class ConfigProvider {
 
   // 公共请求数据地址前缀
-  public apiUrl="http://39.108.159.135/";
+  public apiUrl="http://jd.itying.com/";
 
   constructor() {
     console.log('Hello ConfigProvider Provider');
